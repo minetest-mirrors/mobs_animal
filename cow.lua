@@ -84,7 +84,8 @@ mobs:register_mob("mobs_animal:cow", {
 
 			local inv = clicker:get_inventory()
 
-			inv:remove_item("main", "bucket:bucket_empty")
+			tool:take_item()
+			clicker:set_wielded_item(tool)
 
 			if inv:room_for_item("main", {name = "mobs:bucket_milk"}) then
 				clicker:get_inventory():add_item("main", "mobs:bucket_milk")
