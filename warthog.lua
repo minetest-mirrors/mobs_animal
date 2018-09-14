@@ -32,6 +32,7 @@ stepheight = 0.6,
 	run_velocity = 3,
 	jump = true,
 	jump_height = 6,
+	pushable = true,
 	follow = {"default:apple", "farming:potato"},
 	view_range = 10,
 	drops = {

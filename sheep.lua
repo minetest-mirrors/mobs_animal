@@ -49,6 +49,7 @@ stepheight = 0.6,
 		runaway = true,
 		jump = true,
 		jump_height = 6,
+		pushable = true,
 		drops = {
 			{name = "mobs:mutton_raw", chance = 1, min = 1, max = 2},
 			{name = "wool:"..col[1], chance = 1, min = 1, max = 1},
