@@ -16,6 +16,10 @@ if minetest.get_modpath("lucky_block") then
 		{"spw", "mobs:kitten", 2},
 		{"exp"},
 		{"dro", {"mobs:hairball"}, 3},
+		{"dro", {"mobs:chicken_raw", "mobs:chicken_cooked"}, 10},
+		{"dro", {"mobs:pork_raw", "mobs:pork_cooked"}, 10},
+		{"dro", {"mobs:mutton_raw", "mobs:mutton_cooked"}, 10},
+		{"dro", {"mobs:meat_raw", "mobs:meat"}, 10},
 	})
 
 	if minetest.registered_nodes["default:nyancat"] then
