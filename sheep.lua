@@ -97,7 +97,6 @@ stepheight = 0.6,
 				--if fed 7x grass or wheat then sheep regrows wool
 				if self.food > 6 then
 
-					self.food = 0
 					self.gotten = false
 
 					self.object:set_properties({

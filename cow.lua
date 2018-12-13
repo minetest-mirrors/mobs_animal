@@ -64,8 +64,6 @@ mobs:register_mob("mobs_animal:cow", {
 
 			-- if fed 7x wheat or grass then cow can be milked again
 			if self.food > 6 then
-
-				self.food = 0
 				self.gotten = false
 			end
 
