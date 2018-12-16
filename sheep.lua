@@ -95,7 +95,7 @@ stepheight = 0.6,
 			if mobs:feed_tame(self, clicker, 8, true, true) then
 
 				--if fed 7x grass or wheat then sheep regrows wool
-				if self.food > 6 then
+				if self.food and self.food > 6 then
 
 					self.gotten = false
 

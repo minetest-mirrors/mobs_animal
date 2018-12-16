@@ -63,7 +63,7 @@ mobs:register_mob("mobs_animal:cow", {
 		if mobs:feed_tame(self, clicker, 8, true, true) then
 
 			-- if fed 7x wheat or grass then cow can be milked again
-			if self.food > 6 then
+			if self.food and self.food > 6 then
 				self.gotten = false
 			end
 
