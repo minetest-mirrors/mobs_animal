@@ -1,7 +1,6 @@
 
 local S = mobs.intllib
 
-
 local all_colours = {
 	{"black",      S("Black"),      "#000000b0"},
 	{"blue",       S("Blue"),       "#015dbb70"},
@@ -26,7 +25,8 @@ local all_colours = {
 for _, col in ipairs(all_colours) do
 
 	mobs:register_mob("mobs_animal:sheep_"..col[1], {
-stepheight = 0.6,
+		stay_near = {"farming:straw", 10},
+		stepheight = 0.6,
 		type = "animal",
 		passive = true,
 		hp_min = 8,
