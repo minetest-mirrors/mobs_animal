@@ -154,7 +154,7 @@ minetest.register_craftitem(":mobs:glass_milk", {
 	description = S("Glass of Milk"),
 	inventory_image = "mobs_glass_milk.png",
 	on_use = minetest.item_eat(2, 'vessels:drinking_glass'),
-	groups = {food_milk_glass = 1, flammable = 3},
+	groups = {food_milk_glass = 1, flammable = 3, vessel = 1},
 })
 
 minetest.register_craft({
