@@ -24,7 +24,7 @@ mobs:register_mob("mobs_animal:bee", {
 	drops = {
 		{name = "mobs:honey", chance = 2, min = 1, max = 2},
 	},
-	water_damage = 2,
+	water_damage = 1,
 	lava_damage = 2,
 	light_damage = 0,
 	fall_damage = 0,
