@@ -15,6 +15,8 @@ mobs:register_mob("mobs_animal:bee", {
 	textures = {
 		{"mobs_bee.png"},
 	},
+	blood_texture = "mobs_bee_inv.png",
+	blood_amount = 1,
 	makes_footstep_sound = false,
 	sounds = {
 		random = "mobs_bee",
