@@ -2,7 +2,7 @@
 local S = mobs.intllib
 
 
--- Chicken by JK Murray
+-- Chicken by JK Murray and Sirrobzeroone
 
 mobs:register_mob("mobs_animal:chicken", {
 stepheight = 0.6,
@@ -13,17 +13,14 @@ stepheight = 0.6,
 	armor = 200,
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
-	mesh = "mobs_chicken.x",
-	-- seems a lot of textures but this fixes the problem with the model
+	mesh = "mobs_chicken.b3d",
 	textures = {
-		{"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png",
-		"mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png", "mobs_chicken.png"},
-		{"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png",
-		"mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png", "mobs_chicken_black.png"},
+		{"mobs_chicken.png"}, -- white
+		{"mobs_chicken_brown.png"},
+		{"mobs_chicken_black.png"},
 	},
 	child_texture = {
-		{"mobs_chick.png", "mobs_chick.png", "mobs_chick.png", "mobs_chick.png",
-		"mobs_chick.png", "mobs_chick.png", "mobs_chick.png", "mobs_chick.png", "mobs_chick.png"},
+		{"mobs_chick.png"},
 	},
 	makes_footstep_sound = true,
 	sounds = {
@@ -37,7 +34,7 @@ stepheight = 0.6,
 		{name = "mobs:chicken_raw", chance = 1, min = 1, max = 1},
 		{name = "mobs:chicken_feather", chance = 1, min = 0, max = 2},
 	},
-	water_damage = 0,
+	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
 	fall_damage = 0,
@@ -45,10 +42,18 @@ stepheight = 0.6,
 	fear_height = 5,
 	animation = {
 		speed_normal = 15,
-		stand_start = 0,
-		stand_end = 1, -- 20
-		walk_start = 20,
-		walk_end = 40,
+		stand_start = 1,
+		stand_end = 30,
+		stand_speed = 28,
+		stand1_start = 31,
+		stand1_end = 70,
+		stand1_speed = 32,
+		walk_start = 71,
+		walk_end = 90,
+		walk_speed = 24,
+		run_start = 91,
+		run_end = 110,
+		run_speed = 24,
 	},
 	follow = {"farming:seed_wheat", "farming:seed_cotton"},
 	view_range = 5,
