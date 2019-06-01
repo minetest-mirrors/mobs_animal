@@ -2,7 +2,7 @@
 local S = mobs.intllib
 
 
--- Cow by Krupnovpavel (additional texture by JurajVajda)
+-- Cow by sirrobzeroone
 
 mobs:register_mob("mobs_animal:cow", {
 	type = "animal",
@@ -16,7 +16,7 @@ mobs:register_mob("mobs_animal:cow", {
 	armor = 200,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.2, 0.4},
 	visual = "mesh",
-	mesh = "mobs_cow.x",
+	mesh = "mobs_cow.b3d",
 	textures = {
 		{"mobs_cow.png"},
 		{"mobs_cow2.png"},
@@ -38,16 +38,25 @@ mobs:register_mob("mobs_animal:cow", {
 	lava_damage = 5,
 	light_damage = 0,
 	animation = {
-		speed_normal = 15,
-		speed_run = 15,
 		stand_start = 0,
 		stand_end = 30,
-		walk_start = 35,
-		walk_end = 65,
-		run_start = 105,
-		run_end = 135,
-		punch_start = 70,
-		punch_end = 100,
+		stand_speed = 20,
+		stand1_start = 35,
+		stand1_end = 75,
+		stand1_speed = 20,
+		walk_start = 85,
+		walk_end = 114,
+		walk_speed = 20,
+		run_start = 120,
+		run_end = 140,
+		run_speed = 30,
+		punch_start = 145,
+		punch_end = 160,
+		punch_speed = 20,
+		die_start = 165,
+		die_end = 185,
+		die_speed = 10,
+		die_loop = false,
 	},
 	follow = {"farming:wheat", "default:grass_1"},
 	view_range = 8,
@@ -134,7 +143,7 @@ mobs:spawn({
 })
 
 
-mobs:register_egg("mobs_animal:cow", S("Cow"), "default_grass.png", 1)
+mobs:register_egg("mobs_animal:cow", S("Cow"), "mobs_cow_inv.png")
 
 
 mobs:alias_mob("mobs:cow", "mobs_animal:cow") -- compatibility
