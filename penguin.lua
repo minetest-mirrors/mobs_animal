@@ -70,4 +70,4 @@ mobs:spawn({
 })
 
 
-mobs:register_egg("mobs_animal:penguin", S("Penguin"), "default_snow.png", 1)
+mobs:register_egg("mobs_animal:penguin", S("Penguin"), "mobs_penguin_inv.png")

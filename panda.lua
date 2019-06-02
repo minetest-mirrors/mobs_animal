@@ -83,4 +83,4 @@ if minetest.get_modpath("ethereal") then
 	})
 end
 
-mobs:register_egg("mobs_animal:panda", S("Panda"), "wool_green.png", 1)
+mobs:register_egg("mobs_animal:panda", S("Panda"), "mobs_panda_inv.png")
