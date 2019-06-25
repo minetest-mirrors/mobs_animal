@@ -2,7 +2,7 @@
 local S = mobs.intllib
 
 
--- Rat by PilzAdam
+-- Rat by PilzAdam (B3D model by sirrobzeroone)
 
 mobs:register_mob("mobs_animal:rat", {
 stepheight = 0.6,
