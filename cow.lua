@@ -154,7 +154,7 @@ minetest.register_craftitem(":mobs:bucket_milk", {
 	description = S("Bucket of Milk"),
 	inventory_image = "mobs_bucket_milk.png",
 	stack_max = 1,
-	on_use = minetest.item_eat(8, 'bucket:bucket_empty'),
+	on_use = minetest.item_eat(8, "bucket:bucket_empty"),
 	groups = {food_milk = 1, flammable = 3},
 })
 
@@ -162,7 +162,7 @@ minetest.register_craftitem(":mobs:bucket_milk", {
 minetest.register_craftitem(":mobs:glass_milk", {
 	description = S("Glass of Milk"),
 	inventory_image = "mobs_glass_milk.png",
-	on_use = minetest.item_eat(2, 'vessels:drinking_glass'),
+	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
 	groups = {food_milk_glass = 1, flammable = 3, vessel = 1},
 })
 
@@ -170,9 +170,9 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "mobs:glass_milk 4",
 	recipe = {
-		'vessels:drinking_glass', 'vessels:drinking_glass',
-		'vessels:drinking_glass', 'vessels:drinking_glass',
-		'mobs:bucket_milk'
+		"vessels:drinking_glass", "vessels:drinking_glass",
+		"vessels:drinking_glass", "vessels:drinking_glass",
+		"mobs:bucket_milk"
 	},
 	replacements = { {"mobs:bucket_milk", "bucket:bucket_empty"} }
 })
@@ -181,9 +181,9 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "mobs:bucket_milk",
 	recipe = {
-		'mobs:glass_milk', 'mobs:glass_milk',
-		'mobs:glass_milk', 'mobs:glass_milk',
-		'bucket:bucket_empty'
+		"mobs:glass_milk", "mobs:glass_milk",
+		"mobs:glass_milk", "mobs:glass_milk",
+		"bucket:bucket_empty"
 	},
 	replacements = { {"mobs:glass_milk", "vessels:drinking_glass 4"} }
 })
@@ -241,15 +241,15 @@ minetest.register_node(":mobs:cheeseblock", {
 minetest.register_craft({
 	output = "mobs:cheeseblock",
 	recipe = {
-		{'mobs:cheese', 'mobs:cheese', 'mobs:cheese'},
-		{'mobs:cheese', 'mobs:cheese', 'mobs:cheese'},
-		{'mobs:cheese', 'mobs:cheese', 'mobs:cheese'},
+		{"mobs:cheese", "mobs:cheese", "mobs:cheese"},
+		{"mobs:cheese", "mobs:cheese", "mobs:cheese"},
+		{"mobs:cheese", "mobs:cheese", "mobs:cheese"},
 	}
 })
 
 minetest.register_craft({
 	output = "mobs:cheese 9",
 	recipe = {
-		{'mobs:cheeseblock'},
+		{"mobs:cheeseblock"},
 	}
 })
