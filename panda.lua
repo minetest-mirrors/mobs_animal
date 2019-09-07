@@ -33,7 +33,7 @@ stepheight = 0.6,
 	run_velocity = 1.5,
 	jump = false,
 	jump_height = 6,
-	follow = {"ethereal:bamboo"},
+	follow = {"ethereal:bamboo", "bamboo:trunk"},
 	view_range = 8,
 	drops = {
 		{name = "mobs:meat_raw", chance = 1, min = 1, max = 2},
