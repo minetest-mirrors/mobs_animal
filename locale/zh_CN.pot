@@ -86,6 +86,10 @@ msgid "Bucket of Milk"
 msgstr "一桶牛奶"
 
 #: cow.lua
+msgid "Glass of Milk"
+msgstr "一杯牛奶"
+
+#: cow.lua
 msgid "Cheese"
 msgstr "奶酪"
 
@@ -100,6 +104,10 @@ msgstr "[模组] Mobs Redo 'Animals' 已加载！"
 #: kitten.lua
 msgid "Kitten"
 msgstr "小猫"
+
+#: kitten.lua
+msgid "Hairball"
+msgstr "毛球"
 
 #: penguin.lua
 msgid "Penguin"

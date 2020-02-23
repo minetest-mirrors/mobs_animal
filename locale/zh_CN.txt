@@ -48,3 +48,6 @@ Warthog = 野猪
 Raw Porkchop = 生猪排
 Cooked Porkchop = 熟猪排
 Panda = 熊猫
+
+Glass of Milk = 一杯牛奶
+Hairball = 毛球
