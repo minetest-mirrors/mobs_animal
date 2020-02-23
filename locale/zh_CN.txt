@@ -4,7 +4,7 @@
 Bee = 蜜蜂
 Honey = 蜂蜜
 Beehive = 蜂巢
-Honey Block = 蜂蜜块
+Honey Block = 蜂蜜方块
 Butter = 黄油
 Bunny = 兔子
 Raw Rabbit = 生兔肉
@@ -20,7 +20,7 @@ Cow already milked! = 奶牛已被挤奶！
 Cow = 奶牛
 Bucket of Milk = 一桶牛奶
 Cheese = 奶酪
-Cheese Block = 奶酪块
+Cheese Block = 奶酪方块
 [MOD] Mobs Redo 'Animals' loaded = [模组] Mobs Redo 'Animals' 已加载！
 Kitten = 小猫
 Penguin = 企鹅

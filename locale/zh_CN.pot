@@ -31,7 +31,7 @@ msgstr "蜂巢"
 
 #: bee.lua
 msgid "Honey Block"
-msgstr "蜂蜜块"
+msgstr "蜂蜜方块"
 
 #: bunny.lua
 msgid "Bunny"
@@ -91,7 +91,7 @@ msgstr "奶酪"
 
 #: cow.lua
 msgid "Cheese Block"
-msgstr "奶酪块"
+msgstr "奶酪方块"
 
 #: init.lua
 msgid "[MOD] Mobs Redo 'Animals' loaded"
