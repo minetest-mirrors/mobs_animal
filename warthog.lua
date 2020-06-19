@@ -69,7 +69,7 @@ end
 
 if minetest.get_modpath("ethereal") then
 	spawn_on = {"ethereal:mushroom_dirt"}
-	spawn_by = {"flowers:mushroom_brown", "flowers:mushroom_brown"}
+	spawn_by = {"flowers:mushroom_brown", "flowers:mushroom_red"}
 end
 
 mobs:spawn({
