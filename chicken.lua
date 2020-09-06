@@ -55,7 +55,10 @@ stepheight = 0.6,
 		run_end = 110,
 		run_speed = 24,
 	},
-	follow = {"farming:seed_wheat", "farming:seed_cotton"},
+	follow = {
+		"farming:seed_wheat", "farming:seed_cotton", "farming:seed_barley",
+		"farming:seed_oat", "farming:seed_rye"
+	},
 	view_range = 5,
 
 	on_rightclick = function(self, clicker)

@@ -58,7 +58,10 @@ mobs:register_mob("mobs_animal:cow", {
 		die_speed = 10,
 		die_loop = false,
 	},
-	follow = {"farming:wheat", "default:grass_1"},
+	follow = {
+		"farming:wheat", "default:grass_1", "farming:barley",
+		"farming:oat", "farming:rye"
+	},
 	view_range = 8,
 	replace_rate = 10,
 	replace_what = {
