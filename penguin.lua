@@ -60,7 +60,7 @@ stepheight = 0.6,
 	end,
 })
 
-
+if not mobs.custom_spawn_animal then
 mobs:spawn({
 	name = "mobs_animal:penguin",
 	nodes = {"default:snowblock"},
@@ -71,6 +71,6 @@ mobs:spawn({
 	max_height = 200,
 	day_toggle = true,
 })
-
+end
 
 mobs:register_egg("mobs_animal:penguin", S("Penguin"), "mobs_penguin_inv.png")
