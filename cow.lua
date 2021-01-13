@@ -188,11 +188,13 @@ minetest.register_craft({
 	type = "shapeless",
 	output = "mobs:bucket_milk",
 	recipe = {
-		"mobs:glass_milk", "mobs:glass_milk",
-		"mobs:glass_milk", "mobs:glass_milk",
+		"group:food_milk_glass", "group:food_milk_glass",
+		"group:food_milk_glass", "group:food_milk_glass",
 		"bucket:bucket_empty"
 	},
-	replacements = { {"mobs:glass_milk", "vessels:drinking_glass 4"} }
+	replacements = {
+		{"group:food_milk_glass", "vessels:drinking_glass 4"},
+	}
 })
 
 
