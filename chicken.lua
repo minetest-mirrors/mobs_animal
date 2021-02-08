@@ -81,7 +81,7 @@ stepheight = 0.6,
 			return
 		end
 
-		local pos = self.object:get_pos()
+		local pos = self.object:get_pos() ; if not pos then return end
 
 		minetest.add_item(pos, "mobs:egg")
 
