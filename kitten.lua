@@ -53,12 +53,7 @@ stepheight = 1.1,
 		stoodup_end = 0,
 	},
 	follow = {
-		"mobs:rat", "ethereal:fish_bluefin", "ethereal:fish_blueram",
-		"ethereal:fish_catfish", "ethereal:fish_plaice", "ethereal:fish_salmon",
-		"ethereal:fish_clownfish", "ethereal:fish_pike", "ethereal:fish_flathead",
-		"ethereal:fish_chichlid", "ethereal:fish_coy", "ethereal:fish_angler",
-		"ethereal:fish_piranha", "ethereal:fish_trout",
-		"mobs_fish:tropical", "xocean:fish_edible"
+		"mobs:rat", "group:food_fish_raw", "mobs_fish:tropical", "xocean:fish_edible"
 	},
 	view_range = 8,
 
