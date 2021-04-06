@@ -138,7 +138,7 @@ mobs:register_arrow("mobs_animal:egg_entity", {
 	end,
 
 	hit_mob = function(self, player)
-		player:punch(minetest.get_player_by_name(self.playername) or self.object, 1.0, {
+		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
 			damage_groups = {fleshy = 1},
 		}, nil)
@@ -213,6 +213,7 @@ local mobs_shoot_egg = function (item, player, pointed_thing)
 
 	ent.velocity = egg_VELOCITY -- needed for api internal timing
 	ent.switch = 1 -- needed so that egg doesn't despawn straight away
+	ent._is_arrow = true -- tell advanced mob protection this is an arrow
 
 	obj:setvelocity({
 		x = dir.x * egg_VELOCITY,
