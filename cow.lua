@@ -174,26 +174,26 @@ minetest.register_craftitem(":mobs:glass_milk", {
 })
 
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "mobs:glass_milk 4",
 	recipe = {
-		"vessels:drinking_glass", "vessels:drinking_glass",
-		"vessels:drinking_glass", "vessels:drinking_glass",
-		"mobs:bucket_milk"
+		{"vessels:drinking_glass", "vessels:drinking_glass"},
+		{"vessels:drinking_glass", "vessels:drinking_glass"},
+		{"mobs:bucket_milk", ""}
 	},
 	replacements = { {"mobs:bucket_milk", "bucket:bucket_empty"} }
 })
 
 minetest.register_craft({
-	type = "shapeless",
+--	type = "shapeless",
 	output = "mobs:bucket_milk",
 	recipe = {
-		"group:food_milk_glass", "group:food_milk_glass",
-		"group:food_milk_glass", "group:food_milk_glass",
-		"bucket:bucket_empty"
+		{"group:food_milk_glass", "group:food_milk_glass"},
+		{"group:food_milk_glass", "group:food_milk_glass"},
+		{"bucket:bucket_empty", ""}
 	},
 	replacements = {
-		{"group:food_milk_glass", "vessels:drinking_glass 4"},
+		{"group:food_milk_glass", "vessels:drinking_glass 4"}
 	}
 })
 
@@ -203,7 +203,7 @@ minetest.register_craftitem(":mobs:butter", {
 	description = S("Butter"),
 	inventory_image = "mobs_butter.png",
 	on_use = minetest.item_eat(1),
-	groups = {food_butter = 1, flammable = 2},
+	groups = {food_butter = 1, flammable = 2}
 })
 
 if minetest.get_modpath("farming") and farming and farming.mod then
