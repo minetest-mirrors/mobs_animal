@@ -53,7 +53,8 @@ stepheight = 1.1,
 		stoodup_end = 0,
 	},
 	follow = {
-		"mobs:rat", "group:food_fish_raw", "mobs_fish:tropical", "xocean:fish_edible"
+		"mobs_animal:rat", "group:food_fish_raw",
+		"mobs_fish:tropical", "xocean:fish_edible"
 	},
 	view_range = 8,
 
