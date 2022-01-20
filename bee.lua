@@ -1,5 +1,5 @@
 
-local S = mobs.intllib
+local S = mobs.intllib_animal
 
 -- Bee by KrupnoPavel (.b3d model by sirrobzeroone)
 

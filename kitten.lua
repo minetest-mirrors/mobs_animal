@@ -1,5 +1,5 @@
 
-local S = mobs.intllib
+local S = mobs.intllib_animal
 local hairball = minetest.settings:get("mobs_hairball")
 
 -- Kitten by Jordach / BFD

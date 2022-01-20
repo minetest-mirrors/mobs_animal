@@ -1,6 +1,5 @@
 
-local S = mobs.intllib
-
+local S = mobs.intllib_animal
 
 -- Penguin by D00Med
 

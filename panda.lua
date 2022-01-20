@@ -1,6 +1,5 @@
 
-local S = mobs.intllib
-
+local S = mobs.intllib_animal
 
 -- Panda by AspireMint (CC BY-SA 3.0)
 

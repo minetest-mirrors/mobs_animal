@@ -1,5 +1,5 @@
 
-local S = mobs.intllib
+local S = mobs.intllib_animal
 
 local all_colours = {
 	{"black",      S("Black"),      "#000000b0"},
@@ -16,7 +16,7 @@ local all_colours = {
 	{"red",        S("Red"),        "#ff0000a0"},
 	{"violet",     S("Violet"),     "#2000c970"},
 	{"white",      S("White"),      "#abababc0"},
-	{"yellow",     S("Yellow"),     "#e3ff0070"},
+	{"yellow",     S("Yellow"),     "#e3ff0070"}
 }
 
 
@@ -36,13 +36,13 @@ for _, col in ipairs(all_colours) do
 		visual = "mesh",
 		mesh = "mobs_sheep.b3d",
 		textures = {
-			{"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"},
+			{"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"}
 		},
 		gotten_texture = {"mobs_sheep_shaved.png"},
 		gotten_mesh = "mobs_sheep_shaved.b3d",
 		makes_footstep_sound = true,
 		sounds = {
-			random = "mobs_sheep",
+			random = "mobs_sheep"
 		},
 		walk_velocity = 1,
 		run_velocity = 2,
@@ -52,7 +52,7 @@ for _, col in ipairs(all_colours) do
 		pushable = true,
 		drops = {
 			{name = "mobs:mutton_raw", chance = 1, min = 1, max = 2},
-			{name = "wool:"..col[1], chance = 1, min = 1, max = 1},
+			{name = "wool:"..col[1], chance = 1, min = 1, max = 1}
 		},
 		water_damage = 0,
 		lava_damage = 5,
@@ -69,7 +69,7 @@ for _, col in ipairs(all_colours) do
 			die_end = 2, --   re-use 2 standing frames at a speed of 1 fps and
 			die_speed = 1, -- have mob rotate when dying.
 			die_loop = false,
-			die_rotate = true,
+			die_rotate = true
 		},
 		follow = {
 			"farming:wheat", "default:grass_1", "farming:barley",
@@ -110,7 +110,7 @@ for _, col in ipairs(all_colours) do
 
 					self.object:set_properties({
 						textures = {"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"},
-						mesh = "mobs_sheep.b3d",
+						mesh = "mobs_sheep.b3d"
 					})
 				end
 
@@ -223,7 +223,7 @@ mobs:spawn({
 	chance = 8000, -- 15000
 	min_height = 0,
 	max_height = 200,
-	day_toggle = true,
+	day_toggle = true
 })
 end
 
@@ -235,7 +235,7 @@ minetest.register_craftitem(":mobs:mutton_raw", {
 	description = S("Raw Mutton"),
 	inventory_image = "mobs_mutton_raw.png",
 	on_use = minetest.item_eat(2),
-	groups = {food_meat_raw = 1, food_mutton_raw = 1, flammable = 2},
+	groups = {food_meat_raw = 1, food_mutton_raw = 1, flammable = 2}
 })
 
 -- cooked mutton
@@ -243,12 +243,12 @@ minetest.register_craftitem(":mobs:mutton_cooked", {
 	description = S("Cooked Mutton"),
 	inventory_image = "mobs_mutton_cooked.png",
 	on_use = minetest.item_eat(6),
-	groups = {food_meat = 1, food_mutton = 1, flammable = 2},
+	groups = {food_meat = 1, food_mutton = 1, flammable = 2}
 })
 
 minetest.register_craft({
 	type = "cooking",
 	output = "mobs:mutton_cooked",
 	recipe = "mobs:mutton_raw",
-	cooktime = 5,
+	cooktime = 5
 })

@@ -1,6 +1,5 @@
 
-local S = mobs.intllib
-
+local S = mobs.intllib_animal
 
 -- Rat by PilzAdam (B3D model by sirrobzeroone)
 
