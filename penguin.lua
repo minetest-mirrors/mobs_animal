@@ -40,8 +40,6 @@ stepheight = 0.6,
 		walk_end = 45,
 		fly_start = 75, -- swim animation
 		fly_end = 95,
-		hover_start = 50,
-		hover_end = 70
 		-- 50-70 is slide/water idle
 	},
 	fly_in = {"default:water_source", "default:water_flowing"},
