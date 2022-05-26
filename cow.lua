@@ -19,7 +19,7 @@ mobs:register_mob("mobs_animal:cow", {
 	mesh = "mobs_cow.b3d",
 	textures = {
 		{"mobs_cow.png"},
-		{"mobs_cow2.png"},
+		{"mobs_cow2.png"}
 	},
 	makes_footstep_sound = true,
 	sounds = {
@@ -32,7 +32,7 @@ mobs:register_mob("mobs_animal:cow", {
 	pushable = true,
 	drops = {
 		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
-		{name = "mobs:leather", chance = 1, min = 0, max = 2},
+		{name = "mobs:leather", chance = 1, min = 0, max = 2}
 	},
 	water_damage = 0,
 	lava_damage = 5,
@@ -56,7 +56,7 @@ mobs:register_mob("mobs_animal:cow", {
 		die_start = 165,
 		die_end = 185,
 		die_speed = 10,
-		die_loop = false,
+		die_loop = false
 	},
 	follow = {
 		"farming:wheat", "default:grass_1", "farming:barley",
@@ -88,9 +88,11 @@ mobs:register_mob("mobs_animal:cow", {
 
 		local tool = clicker:get_wielded_item()
 		local name = clicker:get_player_name()
+		local item = tool:get_name()
 
 		-- milk cow with empty bucket
-		if tool:get_name() == "bucket:bucket_empty" then
+		if item == "bucket:bucket_empty"
+		or item == "wooden_bucket:bucket_wood_empty" then
 
 			--if self.gotten == true
 			if self.child == true then
@@ -108,12 +110,18 @@ mobs:register_mob("mobs_animal:cow", {
 			tool:take_item()
 			clicker:set_wielded_item(tool)
 
-			if inv:room_for_item("main", {name = "mobs:bucket_milk"}) then
-				clicker:get_inventory():add_item("main", "mobs:bucket_milk")
+			-- which bucket are we using
+			local ret_item = "mobs:bucket_milk"
+			if item == "wooden_bucket:bucket_wood_empty" then
+				ret_item = "mobs:wooden_bucket_milk"
+			end
+
+			if inv:room_for_item("main", {name = ret_item}) then
+				clicker:get_inventory():add_item("main", ret_item)
 			else
 				local pos = self.object:get_pos()
 				pos.y = pos.y + 0.5
-				minetest.add_item(pos, {name = "mobs:bucket_milk"})
+				minetest.add_item(pos, {name = ret_item})
 			end
 
 			self.gotten = true -- milked
@@ -131,7 +139,7 @@ mobs:register_mob("mobs_animal:cow", {
 			self.food = 0
 			self.gotten = false
 		end
-	end,
+	end
 })
 
 
@@ -142,10 +150,10 @@ mobs:spawn({
 	neighbors = {"group:grass"},
 	min_light = 14,
 	interval = 60,
-	chance = 8000, -- 15000
+	chance = 8000,
 	min_height = 5,
 	max_height = 200,
-	day_toggle = true,
+	day_toggle = true
 })
 end
 
@@ -174,18 +182,16 @@ minetest.register_craftitem(":mobs:glass_milk", {
 })
 
 minetest.register_craft({
---	type = "shapeless",
 	output = "mobs:glass_milk 4",
 	recipe = {
 		{"vessels:drinking_glass", "vessels:drinking_glass"},
 		{"vessels:drinking_glass", "vessels:drinking_glass"},
 		{"mobs:bucket_milk", ""}
 	},
-	replacements = { {"mobs:bucket_milk", "bucket:bucket_empty"} }
+	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
 })
 
 minetest.register_craft({
---	type = "shapeless",
 	output = "mobs:bucket_milk",
 	recipe = {
 		{"group:food_milk_glass", "group:food_milk_glass"},
@@ -207,19 +213,18 @@ minetest.register_craftitem(":mobs:butter", {
 })
 
 if minetest.get_modpath("farming") and farming and farming.mod then
-minetest.register_craft({
-	type = "shapeless",
-	output = "mobs:butter",
-	recipe = {"mobs:bucket_milk", "farming:salt"},
-	replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
-})
+
+	minetest.register_craft({
+		output = "mobs:butter",
+		recipe = {{"mobs:bucket_milk", "farming:salt"}},
+		replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
+	})
 else -- some saplings are high in sodium so makes a good replacement item
-minetest.register_craft({
-	type = "shapeless",
-	output = "mobs:butter",
-	recipe = {"mobs:bucket_milk", "default:sapling"},
-	replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
-})
+	minetest.register_craft({
+		output = "mobs:butter",
+		recipe = {{"mobs:bucket_milk", "default:sapling"}},
+		replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
+	})
 end
 
 -- cheese wedge
@@ -227,7 +232,7 @@ minetest.register_craftitem(":mobs:cheese", {
 	description = S("Cheese"),
 	inventory_image = "mobs_cheese.png",
 	on_use = minetest.item_eat(4),
-	groups = {food_cheese = 1, flammable = 2},
+	groups = {food_cheese = 1, flammable = 2}
 })
 
 minetest.register_craft({
@@ -235,7 +240,7 @@ minetest.register_craft({
 	output = "mobs:cheese",
 	recipe = "mobs:bucket_milk",
 	cooktime = 5,
-	replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
+	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
 })
 
 -- cheese block
@@ -252,13 +257,46 @@ minetest.register_craft({
 	recipe = {
 		{"group:food_cheese", "group:food_cheese", "group:food_cheese"},
 		{"group:food_cheese", "group:food_cheese", "group:food_cheese"},
-		{"group:food_cheese", "group:food_cheese", "group:food_cheese"},
+		{"group:food_cheese", "group:food_cheese", "group:food_cheese"}
 	}
 })
 
 minetest.register_craft({
 	output = "mobs:cheese 9",
-	recipe = {
-		{"mobs:cheeseblock"},
-	}
+	recipe = {{"mobs:cheeseblock"}}
 })
+
+
+-- check for wooden bucket mod and add compatibility
+if minetest.get_modpath("wooden_bucket") then
+
+	minetest.register_craftitem(":mobs:wooden_bucket_milk", {
+		description = S("Wooden Bucket of Milk"),
+		inventory_image = "mobs_wooden_bucket_milk.png",
+		stack_max = 1,
+		on_use = minetest.item_eat(8, "wooden_bucket:bucket_wood_empty"),
+		groups = {food_milk = 1, flammable = 3, drink = 1}
+	})
+
+	minetest.register_craft({
+		output = "mobs:glass_milk 4",
+		recipe = {
+			{"vessels:drinking_glass", "vessels:drinking_glass"},
+			{"vessels:drinking_glass", "vessels:drinking_glass"},
+			{"mobs:wooden_bucket_milk", ""}
+		},
+		replacements = {{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"}}
+	})
+
+	minetest.register_craft({
+		output = "mobs:wooden_bucket_milk",
+		recipe = {
+			{"group:food_milk_glass", "group:food_milk_glass"},
+			{"group:food_milk_glass", "group:food_milk_glass"},
+			{"wooden_bucket:bucket_wood_empty", ""}
+		},
+		replacements = {
+			{"group:food_milk_glass", "vessels:drinking_glass 4"}
+		}
+	})
+end
