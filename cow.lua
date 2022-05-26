@@ -212,20 +212,17 @@ minetest.register_craftitem(":mobs:butter", {
 	groups = {food_butter = 1, flammable = 2}
 })
 
-if minetest.get_modpath("farming") and farming and farming.mod then
+local salt_item = "default:sapling" -- some saplings are high in sodium
 
-	minetest.register_craft({
-		output = "mobs:butter",
-		recipe = {{"mobs:bucket_milk", "farming:salt"}},
-		replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
-	})
-else -- some saplings are high in sodium so makes a good replacement item
-	minetest.register_craft({
-		output = "mobs:butter",
-		recipe = {{"mobs:bucket_milk", "default:sapling"}},
-		replacements = {{ "mobs:bucket_milk", "bucket:bucket_empty"}}
-	})
+if minetest.get_modpath("farming") and farming and farming.mod then
+	salt_item = "farming:salt"
 end
+
+minetest.register_craft({
+	output = "mobs:butter",
+	recipe = {{"mobs:bucket_milk", salt_item}},
+	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
+})
 
 -- cheese wedge
 minetest.register_craftitem(":mobs:cheese", {
@@ -298,5 +295,11 @@ if minetest.get_modpath("wooden_bucket") then
 		replacements = {
 			{"group:food_milk_glass", "vessels:drinking_glass 4"}
 		}
+	})
+
+	minetest.register_craft({
+		output = "mobs:butter",
+		recipe = {{"mobs:wooden_bucket_milk", salt_item}},
+		replacements = {{"mobs:wooden_bucket_milk", "wooden_bucket:bucket_wood_empty"}}
 	})
 end
