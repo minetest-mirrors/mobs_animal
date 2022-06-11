@@ -1,7 +1,5 @@
 local path = minetest.get_modpath(minetest.get_current_modname()) .. "/"
 
-local S
-
 -- Check for translation method
 local S
 if minetest.get_translator ~= nil then
