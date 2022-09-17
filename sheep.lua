@@ -24,6 +24,15 @@ local all_colours = {
 
 for _, col in ipairs(all_colours) do
 
+	local drops_normal = {
+		{name = "mobs:mutton_raw", chance = 1, min = 1, max = 2},
+		{name = "wool:" .. col[1], chance = 1, min = 1, max = 1}
+	}
+
+	local drops_gotten = {
+		{name = "mobs:mutton_raw", chance = 1, min = 1, max = 2}
+	}
+
 	mobs:register_mob("mobs_animal:sheep_"..col[1], {
 		stay_near = {"farming:straw", 10},
 		stepheight = 0.6,
@@ -50,10 +59,7 @@ for _, col in ipairs(all_colours) do
 		jump = true,
 		jump_height = 6,
 		pushable = true,
-		drops = {
-			{name = "mobs:mutton_raw", chance = 1, min = 1, max = 2},
-			{name = "wool:"..col[1], chance = 1, min = 1, max = 1}
-		},
+		drops = drops_normal,
 		water_damage = 0,
 		lava_damage = 5,
 		light_damage = 0,
@@ -91,6 +97,7 @@ for _, col in ipairs(all_colours) do
 
 				self.food = 0
 				self.gotten = false
+				self.drops = drops_normal
 
 				self.object:set_properties({
 					textures = {"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"},
@@ -107,6 +114,7 @@ for _, col in ipairs(all_colours) do
 				if self.food and self.food > 6 then
 
 					self.gotten = false
+					self.drops = drops_normal
 
 					self.object:set_properties({
 						textures = {"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"},
@@ -132,6 +140,7 @@ for _, col in ipairs(all_colours) do
 				end
 
 				self.gotten = true -- shaved
+				self.drops = drops_gotten
 
 				local obj = minetest.add_item(
 					self.object:get_pos(),
