@@ -1,6 +1,7 @@
 
 local S = mobs.intllib_animal
 
+
 -- Rat by PilzAdam (B3D model by sirrobzeroone)
 
 mobs:register_mob("mobs_animal:rat", {
@@ -15,11 +16,11 @@ stepheight = 0.6,
 	mesh = "mobs_rat.b3d",
 	textures = {
 		{"mobs_rat.png"},
-		{"mobs_rat2.png"},
+		{"mobs_rat2.png"}
 	},
 	makes_footstep_sound = false,
 	sounds = {
-		random = "mobs_rat",
+		random = "mobs_rat"
 	},
 	walk_velocity = 1,
 	run_velocity = 2,
@@ -29,6 +30,7 @@ stepheight = 0.6,
 	lava_damage = 4,
 	light_damage = 0,
 	fear_height = 2,
+
 	on_rightclick = function(self, clicker)
 		mobs:capture_mob(self, clicker, 50, 90, 0, true, "mobs_animal:rat")
 	end,
@@ -59,6 +61,7 @@ stepheight = 0.6,
 })
 
 
+-- example on_spawn function
 local function rat_spawn(self, pos)
 	self = self:get_luaentity()
 	print (self.name, pos.x, pos.y, pos.z)
@@ -66,17 +69,19 @@ local function rat_spawn(self, pos)
 	self.health = 100
 end
 
+
 if not mobs.custom_spawn_animal then
-mobs:spawn({
-	name = "mobs_animal:rat",
-	nodes = {"default:stone"},
-	min_light = 3,
-	max_light = 9,
-	interval = 60,
-	chance = 8000,
-	max_height = 0,
---	on_spawn = rat_spawn,
-})
+
+	mobs:spawn({
+		name = "mobs_animal:rat",
+		nodes = {"default:stone"},
+		min_light = 3,
+		max_light = 9,
+		interval = 60,
+		chance = 8000,
+		max_height = 0,
+	--	on_spawn = rat_spawn,
+	})
 end
 
 

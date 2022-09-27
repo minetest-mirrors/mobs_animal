@@ -88,6 +88,7 @@ for _, col in ipairs(all_colours) do
 			{"default:dirt_with_grass", "default:dirt", -2}
 		},
 		fear_height = 3,
+
 		on_replace = function(self, pos, oldnode, newnode)
 
 			self.food = (self.food or 0) + 1
@@ -100,11 +101,15 @@ for _, col in ipairs(all_colours) do
 				self.drops = drops_normal
 
 				self.object:set_properties({
-					textures = {"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"},
+					textures = {
+						"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:"
+						.. col[3] .. ")"
+					},
 					mesh = "mobs_sheep.b3d",
 				})
 			end
 		end,
+
 		on_rightclick = function(self, clicker)
 
 			--are we feeding?
@@ -117,7 +122,10 @@ for _, col in ipairs(all_colours) do
 					self.drops = drops_normal
 
 					self.object:set_properties({
-						textures = {"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:" .. col[3] .. ")"},
+						textures = {
+							"mobs_sheep_base.png^(mobs_sheep_wool.png^[colorize:"
+							.. col[3] .. ")"
+						},
 						mesh = "mobs_sheep.b3d"
 					})
 				end
@@ -144,7 +152,7 @@ for _, col in ipairs(all_colours) do
 
 				local obj = minetest.add_item(
 					self.object:get_pos(),
-					ItemStack( "wool:" .. col[1] .. " " .. math.random(1, 3) )
+					ItemStack( "wool:" .. col[1] .. " " .. math.random(3) )
 				)
 
 				if obj then
@@ -162,7 +170,7 @@ for _, col in ipairs(all_colours) do
 
 				self.object:set_properties({
 					textures = {"mobs_sheep_shaved.png"},
-					mesh = "mobs_sheep_shaved.b3d",
+					mesh = "mobs_sheep_shaved.b3d"
 				})
 
 				return
@@ -214,7 +222,9 @@ for _, col in ipairs(all_colours) do
 		end
 	})
 
-mobs:register_egg("mobs_animal:sheep_"..col[1], S("@1 Sheep", col[2]), "wool_"..col[1]..".png^mobs_sheep_inv.png")
+	-- spawn egg
+	mobs:register_egg("mobs_animal:sheep_"..col[1], S("@1 Sheep", col[2]),
+			"wool_"..col[1]..".png^mobs_sheep_inv.png")
 
 	-- compatibility
 	mobs:alias_mob("mobs:sheep_" .. col[1], "mobs_animal:sheep_" .. col[1])
@@ -223,21 +233,23 @@ end
 
 
 if not mobs.custom_spawn_animal then
-mobs:spawn({
-	name = "mobs_animal:sheep_white",
-	nodes = {"default:dirt_with_grass", "ethereal:green_dirt"},
-	neighbors = {"group:grass"},
-	min_light = 14,
-	interval = 60,
-	chance = 8000, -- 15000
-	min_height = 0,
-	max_height = 200,
-	day_toggle = true
-})
+
+	mobs:spawn({
+		name = "mobs_animal:sheep_white",
+		nodes = {"default:dirt_with_grass", "ethereal:green_dirt"},
+		neighbors = {"group:grass"},
+		min_light = 14,
+		interval = 60,
+		chance = 8000,
+		min_height = 0,
+		max_height = 200,
+		day_toggle = true
+	})
 end
 
 
 mobs:alias_mob("mobs:sheep", "mobs_animal:sheep_white") -- compatibility
+
 
 -- raw mutton
 minetest.register_craftitem(":mobs:mutton_raw", {

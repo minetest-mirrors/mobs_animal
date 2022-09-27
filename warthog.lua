@@ -1,6 +1,7 @@
 
 local S = mobs.intllib_animal
 
+
 -- Warthog originally by KrupnoPavel, B3D model by sirrobzeroone
 
 mobs:register_mob("mobs_animal:pumba", {
@@ -56,6 +57,7 @@ mobs:register_mob("mobs_animal:pumba", {
 		die_loop = false,
 		die_rotate = true
 	},
+
 	on_rightclick = function(self, clicker)
 
 		if mobs:feed_tame(self, clicker, 8, true, true) then return end
@@ -63,6 +65,7 @@ mobs:register_mob("mobs_animal:pumba", {
 		if mobs:capture_mob(self, clicker, 0, 5, 50, false, nil) then return end
 	end
 })
+
 
 local spawn_on = {"default:dirt_with_grass"}
 local spawn_by = {"group:grass"}
@@ -78,19 +81,22 @@ if minetest.get_modpath("ethereal") then
 end
 
 if not mobs.custom_spawn_animal then
-mobs:spawn({
-	name = "mobs_animal:pumba",
-	nodes = spawn_on,
-	neighbors = spawn_by,
-	min_light = 14,
-	interval = 60,
-	chance = 8000, -- 15000
-	min_height = 0,
-	max_height = 200,
-	day_toggle = true
-})
+
+	mobs:spawn({
+		name = "mobs_animal:pumba",
+		nodes = spawn_on,
+		neighbors = spawn_by,
+		min_light = 14,
+		interval = 60,
+		chance = 8000,
+		min_height = 0,
+		max_height = 200,
+		day_toggle = true
+	})
 end
 
+
+-- spawn egg
 mobs:register_egg("mobs_animal:pumba", S("Warthog"), "mobs_pumba_inv.png")
 
 

@@ -1,6 +1,7 @@
 
 local S = mobs.intllib_animal
 
+
 -- Bee by KrupnoPavel (.b3d model by sirrobzeroone)
 
 mobs:register_mob("mobs_animal:bee", {
@@ -13,18 +14,18 @@ mobs:register_mob("mobs_animal:bee", {
 	visual = "mesh",
 	mesh = "mobs_bee.b3d",
 	textures = {
-		{"mobs_bee.png"},
+		{"mobs_bee.png"}
 	},
 	blood_texture = "mobs_bee_inv.png",
 	blood_amount = 1,
 	makes_footstep_sound = false,
 	sounds = {
-		random = "mobs_bee",
+		random = "mobs_bee"
 	},
 	walk_velocity = 1,
 	jump = true,
 	drops = {
-		{name = "mobs:honey", chance = 2, min = 1, max = 2},
+		{name = "mobs:honey", chance = 2, min = 1, max = 2}
 	},
 	water_damage = 1,
 	lava_damage = 2,
@@ -36,41 +37,49 @@ mobs:register_mob("mobs_animal:bee", {
 		stand_start = 0,
 		stand_end = 30,
 		walk_start = 35,
-		walk_end = 65,
+		walk_end = 65
 	},
+
 	on_rightclick = function(self, clicker)
 		mobs:capture_mob(self, clicker, 50, 90, 0, true, "mobs_animal:bee")
 	end,
+
 --	after_activate = function(self, staticdata, def, dtime)
 --		print ("------", self.name, dtime, self.health)
 --	end,
 })
 
 if not mobs.custom_spawn_animal then
-mobs:spawn({
-	name = "mobs_animal:bee",
-	nodes = {"group:flower"},
-	min_light = 14,
-	interval = 60,
-	chance = 7000,
-	min_height = 3,
-	max_height = 200,
-	day_toggle = true,
-})
+
+	mobs:spawn({
+		name = "mobs_animal:bee",
+		nodes = {"group:flower"},
+		min_light = 14,
+		interval = 60,
+		chance = 7000,
+		min_height = 3,
+		max_height = 200,
+		day_toggle = true
+	})
 end
 
+
+-- spawn egg
 mobs:register_egg("mobs_animal:bee", S("Bee"), "mobs_bee_inv.png")
 
--- compatibility
+
+-- compatibility (only required if moving from old mobs to mobs_redo)
 mobs:alias_mob("mobs:bee", "mobs_animal:bee")
+
 
 -- honey
 minetest.register_craftitem(":mobs:honey", {
 	description = S("Honey"),
 	inventory_image = "mobs_honey_inv.png",
 	on_use = minetest.item_eat(4),
-	groups = {food_honey = 1, food_sugar = 1, flammable = 1},
+	groups = {food_honey = 1, food_sugar = 1, flammable = 1}
 })
+
 
 -- beehive (when placed spawns bee)
 minetest.register_node(":mobs:beehive", {
@@ -104,7 +113,7 @@ minetest.register_node(":mobs:beehive", {
 
 			minetest.set_node(pos, {name = "mobs:beehive", param2 = 1})
 
-			if math.random(1, 4) == 1 then
+			if math.random(4) == 1 then
 				minetest.add_entity(pos, "mobs_animal:bee")
 			end
 		end
@@ -131,14 +140,14 @@ minetest.register_node(":mobs:beehive", {
 
 		-- only dig beehive if no honey inside
 		return meta:get_inventory():is_empty("beehive")
-	end,
-
+	end
 })
 
+-- beehive recipe
 minetest.register_craft({
 	output = "mobs:beehive",
 	recipe = {
-		{"mobs:bee","mobs:bee","mobs:bee"},
+		{"mobs:bee","mobs:bee","mobs:bee"}
 	}
 })
 
@@ -147,24 +156,26 @@ minetest.register_node(":mobs:honey_block", {
 	description = S("Honey Block"),
 	tiles = {"mobs_honey_block.png"},
 	groups = {snappy = 3, flammable = 2},
-	sounds = default.node_sound_dirt_defaults(),
+	sounds = default.node_sound_dirt_defaults()
 })
 
+-- recipe
 minetest.register_craft({
 	output = "mobs:honey_block",
 	recipe = {
 		{"mobs:honey", "mobs:honey", "mobs:honey"},
 		{"mobs:honey", "mobs:honey", "mobs:honey"},
-		{"mobs:honey", "mobs:honey", "mobs:honey"},
+		{"mobs:honey", "mobs:honey", "mobs:honey"}
 	}
 })
 
 minetest.register_craft({
 	output = "mobs:honey 9",
 	recipe = {
-		{"mobs:honey_block"},
+		{"mobs:honey_block"}
 	}
 })
+
 
 -- beehive workings
 minetest.register_abm({

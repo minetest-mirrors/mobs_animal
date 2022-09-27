@@ -2,18 +2,19 @@
 local S = mobs.intllib_animal
 local hairball = minetest.settings:get("mobs_hairball")
 
+
 -- Kitten by Jordach / BFD
 
 mobs:register_mob("mobs_animal:kitten", {
-stepheight = 0.6,
+	stepheight = 0.6,
 	type = "animal",
-specific_attack = {"mobs_animal:rat"},
-damage = 1,
-attack_type = "dogfight",
-attack_animals = true, -- so it can attack rat
-attack_players = false,
-reach = 1,
-stepheight = 1.1,
+	specific_attack = {"mobs_animal:rat"},
+	damage = 1,
+	attack_type = "dogfight",
+	attack_animals = true, -- so it can attack rat
+	attack_players = false,
+	reach = 1,
+	stepheight = 1.1,
 	passive = false,
 	hp_min = 5,
 	hp_max = 10,
@@ -26,11 +27,11 @@ stepheight = 1.1,
 		{"mobs_kitten_striped.png"},
 		{"mobs_kitten_splotchy.png"},
 		{"mobs_kitten_ginger.png"},
-		{"mobs_kitten_sandy.png"},
+		{"mobs_kitten_sandy.png"}
 	},
 	makes_footstep_sound = false,
 	sounds = {
-		random = "mobs_kitten",
+		random = "mobs_kitten"
 	},
 	walk_velocity = 0.6,
 	walk_chance = 15,
@@ -38,7 +39,7 @@ stepheight = 1.1,
 	runaway = true,
 	jump = false,
 	drops = {
-		{name = "farming:string", chance = 1, min = 0, max = 1},
+		{name = "farming:string", chance = 1, min = 0, max = 1}
 	},
 	water_damage = 0,
 	lava_damage = 5,
@@ -92,7 +93,7 @@ stepheight = 1.1,
 		self.hairball_timer = 0
 
 		if self.child
-		or math.random(1, 250) > 1 then
+		or math.random(250) > 1 then
 			return
 		end
 
@@ -103,9 +104,9 @@ stepheight = 1.1,
 		minetest.sound_play("default_dig_snappy", {
 			pos = pos,
 			gain = 1.0,
-			max_hear_distance = 5,
+			max_hear_distance = 5
 		})
-	end,
+	end
 })
 
 
@@ -116,17 +117,18 @@ if minetest.get_modpath("ethereal") then
 end
 
 if not mobs.custom_spawn_animal then
-mobs:spawn({
-	name = "mobs_animal:kitten",
-	nodes = {spawn_on},
-	neighbors = {"group:grass"},
-	min_light = 14,
-	interval = 60,
-	chance = 10000, -- 22000
-	min_height = 5,
-	max_height = 50,
-	day_toggle = true,
-})
+
+	mobs:spawn({
+		name = "mobs_animal:kitten",
+		nodes = {spawn_on},
+		neighbors = {"group:grass"},
+		min_light = 14,
+		interval = 60,
+		chance = 10000,
+		min_height = 5,
+		max_height = 50,
+		day_toggle = true
+	})
 end
 
 
@@ -164,11 +166,11 @@ minetest.register_craftitem(":mobs:hairball", {
 		minetest.sound_play("default_place_node_hard", {
 			pos = newpos,
 			gain = 1.0,
-			max_hear_distance = 5,
+			max_hear_distance = 5
 		})
 
 		itemstack:take_item()
 
 		return itemstack
-	end,
+	end
 })

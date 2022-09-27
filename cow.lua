@@ -70,6 +70,7 @@ mobs:register_mob("mobs_animal:cow", {
 	},
 --	stay_near = {{"farming:straw", "group:grass"}, 10},
 	fear_height = 2,
+
 	on_rightclick = function(self, clicker)
 
 		-- feed or tame
@@ -100,8 +101,9 @@ mobs:register_mob("mobs_animal:cow", {
 			end
 
 			if self.gotten == true then
-				minetest.chat_send_player(name,
-					S("Cow already milked!"))
+
+				minetest.chat_send_player(name, S("Cow already milked!"))
+
 				return
 			end
 
@@ -112,6 +114,7 @@ mobs:register_mob("mobs_animal:cow", {
 
 			-- which bucket are we using
 			local ret_item = "mobs:bucket_milk"
+
 			if item == "wooden_bucket:bucket_wood_empty" then
 				ret_item = "mobs:wooden_bucket_milk"
 			end
@@ -120,7 +123,9 @@ mobs:register_mob("mobs_animal:cow", {
 				clicker:get_inventory():add_item("main", ret_item)
 			else
 				local pos = self.object:get_pos()
+
 				pos.y = pos.y + 0.5
+
 				minetest.add_item(pos, {name = ret_item})
 			end
 
@@ -144,17 +149,18 @@ mobs:register_mob("mobs_animal:cow", {
 
 
 if not mobs.custom_spawn_animal then
-mobs:spawn({
-	name = "mobs_animal:cow",
-	nodes = {"default:dirt_with_grass", "ethereal:green_dirt"},
-	neighbors = {"group:grass"},
-	min_light = 14,
-	interval = 60,
-	chance = 8000,
-	min_height = 5,
-	max_height = 200,
-	day_toggle = true
-})
+
+	mobs:spawn({
+		name = "mobs_animal:cow",
+		nodes = {"default:dirt_with_grass", "ethereal:green_dirt"},
+		neighbors = {"group:grass"},
+		min_light = 14,
+		interval = 60,
+		chance = 8000,
+		min_height = 5,
+		max_height = 200,
+		day_toggle = true
+	})
 end
 
 
@@ -170,7 +176,7 @@ minetest.register_craftitem(":mobs:bucket_milk", {
 	inventory_image = "mobs_bucket_milk.png",
 	stack_max = 1,
 	on_use = minetest.item_eat(8, "bucket:bucket_empty"),
-	groups = {food_milk = 1, flammable = 3, drink = 1},
+	groups = {food_milk = 1, flammable = 3, drink = 1}
 })
 
 -- glass of milk
@@ -178,7 +184,7 @@ minetest.register_craftitem(":mobs:glass_milk", {
 	description = S("Glass of Milk"),
 	inventory_image = "mobs_glass_milk.png",
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
-	groups = {food_milk_glass = 1, flammable = 3, vessel = 1, drink = 1},
+	groups = {food_milk_glass = 1, flammable = 3, vessel = 1, drink = 1}
 })
 
 minetest.register_craft({

@@ -5,7 +5,7 @@ local S = mobs.intllib_animal
 -- Chicken by JK Murray and Sirrobzeroone
 
 mobs:register_mob("mobs_animal:chicken", {
-stepheight = 0.6,
+	stepheight = 0.6,
 	type = "animal",
 	passive = true,
 	hp_min = 5,
@@ -17,14 +17,14 @@ stepheight = 0.6,
 	textures = {
 		{"mobs_chicken.png"}, -- white
 		{"mobs_chicken_brown.png"},
-		{"mobs_chicken_black.png"},
+		{"mobs_chicken_black.png"}
 	},
 	child_texture = {
-		{"mobs_chick.png"},
+		{"mobs_chick.png"}
 	},
 	makes_footstep_sound = true,
 	sounds = {
-		random = "mobs_chicken",
+		random = "mobs_chicken"
 	},
 	walk_velocity = 1,
 	run_velocity = 3,
@@ -32,7 +32,7 @@ stepheight = 0.6,
 	runaway_from = {"player", "mobs_animal:pumba"},
 	drops = {
 		{name = "mobs:chicken_raw", chance = 1, min = 1, max = 1},
-		{name = "mobs:chicken_feather", chance = 1, min = 0, max = 2},
+		{name = "mobs:chicken_feather", chance = 1, min = 0, max = 2}
 	},
 	water_damage = 1,
 	lava_damage = 5,
@@ -53,7 +53,7 @@ stepheight = 0.6,
 		walk_speed = 24,
 		run_start = 91,
 		run_end = 110,
-		run_speed = 24,
+		run_speed = 24
 	},
 	follow = {
 		"farming:seed_wheat", "farming:seed_cotton", "farming:seed_barley",
@@ -77,7 +77,7 @@ stepheight = 0.6,
 		self.egg_timer = 0
 
 		if self.child
-		or math.random(1, 100) > 1 then
+		or math.random(100) > 1 then
 			return
 		end
 
@@ -88,9 +88,9 @@ stepheight = 0.6,
 		minetest.sound_play("default_place_node_hard", {
 			pos = pos,
 			gain = 1.0,
-			max_hear_distance = 5,
+			max_hear_distance = 5
 		})
-	end,
+	end
 })
 
 
@@ -102,17 +102,18 @@ end
 
 
 if not mobs.custom_spawn_animal then
-mobs:spawn({
-	name = "mobs_animal:chicken",
-	nodes = spawn_on,
-	neighbors = {"group:grass"},
-	min_light = 14,
-	interval = 60,
-	chance = 8000, -- 15000
-	min_height = 5,
-	max_height = 200,
-	day_toggle = true,
-})
+
+	mobs:spawn({
+		name = "mobs_animal:chicken",
+		nodes = spawn_on,
+		neighbors = {"group:grass"},
+		min_light = 14,
+		interval = 60,
+		chance = 8000,
+		min_height = 5,
+		max_height = 200,
+		day_toggle = true
+	})
 end
 
 
@@ -133,14 +134,14 @@ mobs:register_arrow("mobs_animal:egg_entity", {
 	hit_player = function(self, player)
 		player:punch(minetest.get_player_by_name(self.playername) or self.object, 1.0, {
 			full_punch_interval = 1.0,
-			damage_groups = {fleshy = 1},
+			damage_groups = {fleshy = 1}
 		}, nil)
 	end,
 
 	hit_mob = function(self, player)
 		player:punch(self.object, 1.0, {
 			full_punch_interval = 1.0,
-			damage_groups = {fleshy = 1},
+			damage_groups = {fleshy = 1}
 		}, nil)
 	end,
 
@@ -181,7 +182,7 @@ local mobs_shoot_egg = function (item, player, pointed_thing)
 	minetest.sound_play("default_place_node_hard", {
 		pos = playerpos,
 		gain = 1.0,
-		max_hear_distance = 5,
+		max_hear_distance = 5
 	})
 
 	local obj = minetest.add_entity({
@@ -251,46 +252,46 @@ minetest.register_craftitem(":mobs:chicken_egg_fried", {
 	description = S("Fried Egg"),
 	inventory_image = "mobs_chicken_egg_fried.png",
 	on_use = minetest.item_eat(2),
-	groups = {food_egg_fried = 1, flammable = 2},
+	groups = {food_egg_fried = 1, flammable = 2}
 })
 
 minetest.register_craft({
 	type  =  "cooking",
 	recipe  = "mobs:egg",
-	output = "mobs:chicken_egg_fried",
+	output = "mobs:chicken_egg_fried"
 })
 
 -- raw chicken
 minetest.register_craftitem(":mobs:chicken_raw", {
-description = S("Raw Chicken"),
+	description = S("Raw Chicken"),
 	inventory_image = "mobs_chicken_raw.png",
 	on_use = minetest.item_eat(2),
-	groups = {food_meat_raw = 1, food_chicken_raw = 1, flammable = 2},
+	groups = {food_meat_raw = 1, food_chicken_raw = 1, flammable = 2}
 })
 
 -- cooked chicken
 minetest.register_craftitem(":mobs:chicken_cooked", {
-description = S("Cooked Chicken"),
+	description = S("Cooked Chicken"),
 	inventory_image = "mobs_chicken_cooked.png",
 	on_use = minetest.item_eat(6),
-	groups = {food_meat = 1, food_chicken = 1, flammable = 2},
+	groups = {food_meat = 1, food_chicken = 1, flammable = 2}
 })
 
 minetest.register_craft({
 	type  =  "cooking",
 	recipe  = "mobs:chicken_raw",
-	output = "mobs:chicken_cooked",
+	output = "mobs:chicken_cooked"
 })
 
 -- feather
 minetest.register_craftitem(":mobs:chicken_feather", {
 	description = S("Feather"),
 	inventory_image = "mobs_chicken_feather.png",
-	groups = {flammable = 2, feather = 1},
+	groups = {flammable = 2, feather = 1}
 })
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "mobs:chicken_feather",
-	burntime = 1,
+	burntime = 1
 })
