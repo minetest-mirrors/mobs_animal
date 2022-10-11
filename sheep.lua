@@ -266,11 +266,17 @@ if not mobs.custom_spawn_animal then
 				for n = 1, iter do
 
 					-- 1/8 chance of black sheep, 1/4 chance of baby sheep
-					local pos2 = nods[random(#nods)] ; pos2.y = pos2.y + 1.5
+					local pos2 = nods[random(#nods)]
 					local type = random(8) == 1 and "_black" or "_white"
 					local kid = random(4) == 1 and true or nil
 
-					mobs:add_mob(pos2, {name = "mobs_animal:sheep" .. type, child = kid})
+					pos2.y = pos2.y + 2
+
+					if minetest.get_node(pos2).name == "air" then
+
+						mobs:add_mob(pos2, {
+							name = "mobs_animal:sheep" .. type, child = kid})
+					end
 				end
 			end
 		end
