@@ -1,6 +1,8 @@
 
 local S = mobs.intllib_animal
 
+local random = math.random
+
 local all_colours = {
 	{"black",      S("Black"),      "#000000b0"},
 	{"blue",       S("Blue"),       "#015dbb70"},
@@ -152,15 +154,15 @@ for _, col in ipairs(all_colours) do
 
 				local obj = minetest.add_item(
 					self.object:get_pos(),
-					ItemStack( "wool:" .. col[1] .. " " .. math.random(3) )
+					ItemStack("wool:" .. col[1] .. " " .. random(3))
 				)
 
 				if obj then
 
-					obj:setvelocity({
-						x = math.random(-1, 1),
+					obj:set_velocity({
+						x = random(-1, 1),
 						y = 5,
-						z = math.random(-1, 1)
+						z = random(-1, 1)
 					})
 				end
 
@@ -243,7 +245,35 @@ if not mobs.custom_spawn_animal then
 		chance = 8000,
 		min_height = 0,
 		max_height = 200,
-		day_toggle = true
+		day_toggle = true,
+		active_object_count = 3,
+
+		-- custom function to spawn sheep herds around main mob
+		on_spawn = function(self, pos)
+
+			local nods = minetest.find_nodes_in_area_under_air(
+				{x = pos.x - 4, y = pos.y - 3, z = pos.z - 4},
+				{x = pos.x + 4, y = pos.y + 3, z = pos.z + 4},
+				{"default:dirt_with_grass", "ethereal:green_dirt"})
+
+			if nods and #nods > 0 then
+
+				-- min herd of 3
+				local iter = math.min(#nods, 3)
+
+-- print("--- sheep at", minetest.pos_to_string(pos), iter)
+
+				for n = 1, iter do
+
+					-- 1/8 chance of black sheep, 1/4 chance of baby sheep
+					local pos2 = nods[random(#nods)] ; pos2.y = pos2.y + 1.5
+					local type = random(8) == 1 and "_black" or "_white"
+					local kid = random(4) == 1 and true or nil
+
+					mobs:add_mob(pos2, {name = "mobs_animal:sheep" .. type, child = kid})
+				end
+			end
+		end
 	})
 end
 

@@ -12,7 +12,7 @@ stepheight = 0.6,
 	hp_min = 1,
 	hp_max = 4,
 	armor = 200,
-	collisionbox = {-0.268, -0.5, -0.268,  0.268, 0.167, 0.268},
+	collisionbox = {-0.268, -0.5, -0.268, 0.268, 0.167, 0.268},
 	visual = "mesh",
 	mesh = "mobs_bunny.b3d",
 	drawtype = "front",
@@ -80,6 +80,7 @@ stepheight = 0.6,
 			return
 		end
 	end,
+
 	on_spawn = function(self)
 
 		local pos = self.object:get_pos() ; pos.y = pos.y - 1
@@ -105,6 +106,7 @@ stepheight = 0.6,
 
 		return true -- run only once, false/nil runs every activation
 	end,
+
 	attack_type = "dogfight",
 	damage = 5
 })
