@@ -201,6 +201,8 @@ for _, col in ipairs(all_colours) do
 
 							ent.owner = name
 							ent.tamed = true
+							ent.protected = self.protected
+							ent.fire_damage = self.fire_damage
 
 							-- take item
 							if not mobs.is_creative(clicker:get_player_name()) then
