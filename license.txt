@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-Chicken sounds from freesounds.org under CC0
+Chicken/Bee/Cow/Kitten/Panda/Pig/Rat/Sheep sounds from freesounds.org under CC0
 
 Mutton, Pork and Rabbit meat textures by Piezo_ under CC0
 
@@ -60,7 +60,7 @@ Models/Textures by ExeterDad ()
   mobs_bunny_brown.png
   mobs_bunny_white.png
 
-Models/Textures by JK Murray ()
+Models/Textures by JK Murray (CC0)
   mobs_chicken.b3d (converted to .b3d by sirrobzerrone)
   mobs_chicken.png
   mobs_chicken_brown.png
