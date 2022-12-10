@@ -29,8 +29,6 @@ Chicken sounds from freesounds.org under CC0
 
 Mutton, Pork and Rabbit meat textures by Piezo_ under CC0
 
-Cow textures by sirrobzeroone under CC0
-
 mobs_panda_viking.png by Zlo under CC0
 
 Models/Textures/Media by Krupnov Pavel (WTFPL)
@@ -69,7 +67,7 @@ Models/Textures by JK Murray ()
   mobs_chicken_black.png
   mobs_chick.png
 
-Models/Textures by sirrobzerrone ()
+Models/Textures by sirrobzerrone (CC0)
   mobs_cow.b3d
   mobs_cow.png
   mobs_cow2.png
@@ -85,7 +83,7 @@ Models/Textures by AspireMint (CC BY-SA 3.0)
   mobs_panda.b3d
   mobs_panda.png
 
-Models/Textures by D00Med ()
+Models/Textures by D00Med (CC BY-SA 3.0)
   mobs_penguin.b3d
   mobs_penguin.png
 
