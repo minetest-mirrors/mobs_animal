@@ -25,7 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-Chicken/Bee/Cow/Panda/Pig/Rat/Sheep sounds from freesounds.org under CC0
+Chicken/Cow/Panda/Pig/Sheep sounds from freesounds.org under CC0
 
 Mutton, Pork and Rabbit meat textures by Piezo_ under CC0
 
@@ -94,3 +94,8 @@ Textures by LithiumSound's Summer Field Texture Pack (CC BY-SA 4.0 NC ShareAlike
   mobs_sheep_base.png
   mobs_sheep_shaved.png
   mobs_sheep_wool.png
+
+Sounds by Cyberpangolin (WTFPL) https://forum.minetest.net/viewtopic.php?t=10798
+  mobs_bee.ogg
+  mobs_spider.ogg
+  mobs_rat.ogg
