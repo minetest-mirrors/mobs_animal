@@ -32,13 +32,14 @@ for _, col in ipairs(all_colours) do
 		{name = "mobs:mutton_raw", chance = 1, min = 1, max = 2}
 	}
 
-	local function horn_texture_sel(horns, gotten)
+	local function horn_texture_sel(horns, gotten, colr)
 
 		local base_text = "mobs_sheep_base.png"
 		local wool_shave_text = "mobs_sheep_wool.png"
 		local shav_text = "mobs_sheep_shaved.png"
 		local horn_text = "mobs_sheep_horns.png"
-		local col_text = "^[multiply:" .. col[3]
+		local col_override = colr and colr or col[3]
+		local col_text = "^[multiply:" .. col_override
 
 		if gotten then
 			wool_shave_text = shav_text
@@ -296,36 +297,48 @@ for _, col in ipairs(all_colours) do
 
 					for _,c in pairs(all_colours) do
 
-						if c[1] == colr then
+						-- only dye if colour option available and sheep not same colour
+						if c[1] == colr
+						and self.name ~= "mobs_animal:sheep_" .. colr then
 
 							local pos = self.object:get_pos()
 
-							-- save horns attribute
-							local horns = self.attribute_horns
-
-							self.object:remove()
-
+							-- add new coloured sheep
 							local mob = minetest.add_entity(pos, "mobs_animal:sheep_" .. colr)
 							local ent = mob:get_luaentity()
 
-							ent.attribute_horns = horns
-							ent.owner = name
-							ent.tamed = true
-							ent.protected = self.protected
-							ent.fire_damage = self.fire_damage
+							if ent then
 
-							local textures = horn_texture_sel(self.attribute_horns, false)
+								-- add old sheep attributes
+								ent.attribute_horns = self.attribute_horns
+								ent.nametag = self.nametag
+								ent.owner = name
+								ent.tamed = true
+								ent.protected = self.protected
+								ent.fire_damage = self.fire_damage
 
-							ent.object:set_properties({textures = {textures}})
-							ent.base_texture = {textures}
+								-- set sheep texture with colour override since we're
+								-- calling function inside different sheep
+								local textures = horn_texture_sel(
+										self.attribute_horns, false, colr)
 
-							-- take item
-							if not mobs.is_creative(clicker:get_player_name()) then
-								item:take_item()
-								clicker:set_wielded_item(item)
+								ent.base_texture = {textures}
+								ent.object:set_properties({
+									textures = {textures},
+									nametag = self.nametag
+								})
+
+								-- remove old sheep
+								self.object:remove()
+
+								-- take item
+								if not mobs.is_creative(clicker:get_player_name()) then
+									item:take_item()
+									clicker:set_wielded_item(item)
+								end
+
+								break
 							end
-
-							break
 						end
 					end
 				end
