@@ -145,7 +145,8 @@ local hairball_items = {
 	"default:clay_lump", "default:paper", "default:dry_grass_1", "dye:red", "",
 	"farming:string", "mobs:chicken_feather", "default:acacia_bush_sapling", "",
 	"default:bush_sapling", "default:copper_lump", "default:iron_lump", "",
-	"dye:black", "dye:brown", "default:obsidian_shard", "default:tin_lump"
+	"dye:black", "dye:brown", "default:obsidian_shard", "default:tin_lump",
+	"ethereal:fish_tetra"
 }
 
 minetest.register_craftitem(":mobs:hairball", {
@@ -164,10 +165,7 @@ minetest.register_craftitem(":mobs:hairball", {
 		end
 
 		minetest.sound_play("default_place_node_hard", {
-			pos = newpos,
-			gain = 1.0,
-			max_hear_distance = 5
-		})
+				pos = newpos, gain = 1.0, max_hear_distance = 5}, true)
 
 		itemstack:take_item()
 
