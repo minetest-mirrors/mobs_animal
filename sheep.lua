@@ -367,13 +367,15 @@ if not mobs.custom_spawn_animal then
 
 	local max_ht = 400
 	local spawn_on = {"default:dirt_with_grass", "ethereal:green_dirt"}
+	local mod_ethereal = minetest.get_modpath("ethereal")
+	local spawn_chance = mod_ethereal and 12000 or 8000
 
 	mobs:spawn({
 		name = "mobs_animal:sheep_white",
 		nodes = spawn_on,
 		min_light = 14,
 		interval = 60,
-		chance = 8000,
+		chance = spawn_chance,
 		min_height = 0,
 		max_height = max_ht,
 		day_toggle = true,
