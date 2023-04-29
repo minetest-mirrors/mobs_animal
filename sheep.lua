@@ -373,6 +373,7 @@ if not mobs.custom_spawn_animal then
 	mobs:spawn({
 		name = "mobs_animal:sheep_white",
 		nodes = spawn_on,
+		neighbors = {"group:grass"},
 		min_light = 14,
 		interval = 60,
 		chance = spawn_chance,
