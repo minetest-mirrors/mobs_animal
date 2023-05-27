@@ -212,6 +212,15 @@ for _, col in ipairs(all_colours) do
 
 			self.object:set_properties({textures = {textures}})
 			self.base_texture = {textures}
+
+			local pos = self.object:get_pos()
+
+			pos.y = pos.y + (self.collisionbox[2] * -1) - 0.4
+
+			self.object:set_pos(pos)
+
+			-- jump slightly when fully grown so as not to fall into ground
+			self.object:set_velocity({x = 0, y = 2, z = 0 })
 		end,
 
 		on_rightclick = function(self, clicker)
