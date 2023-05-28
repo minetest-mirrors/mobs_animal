@@ -6,10 +6,7 @@ local S = mobs.intllib_animal
 
 mobs:register_mob("mobs_animal:bunny", {
 	type = "animal",
-	passive = false,--true,
-	attack_type = "dogfight",
-	attack_players = true,
-	damage = 5,
+	passive = true,
 	reach = 1,
 	stepheight = 0.6,
 	hp_min = 1,
@@ -78,6 +75,7 @@ mobs:register_mob("mobs_animal:bunny", {
 			-- set special bunny attributes
 			local staticdata = minetest.serialize({
 				type = "monster",
+				attack_type = "dogfight",
 				hp_max = 20,
 				health = 20,
 				damage = 5,
