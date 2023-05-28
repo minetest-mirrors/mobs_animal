@@ -136,19 +136,14 @@ for _, col in ipairs(all_colours) do
 
 			-- simple truth table P1/P2 horns/no_horns
 			local breed_out = {
-				["P1_N"] = {["P2_N"] = 5 ,["P2_H"] = 50 },
-				["P1_H"] = {["P2_N"] = 50,["P2_H"] = 95 }
+				["P1_N"] = {["P2_N"] = 5 ,["P2_H"] = 50},
+				["P1_H"] = {["P2_N"] = 50,["P2_H"] = 95}
 			}
 
-			local p1 = "P1_N" -- no horns
-			local p2 = "P2_N" -- no horns
-
-			if parent1.attribute_horns then p1 = "P1_H" end
-			if parent2.attribute_horns then p2 = "P2_H" end
-
+			local p1 = parent1.attribute_horns and "P1_H" or "P1_N"
+			local p2 = parent2.attribute_horns and "P2_H" or "P2_N"
 			local horn_chance = breed_out[p1][p2]
 			local horns = random(100) <= horn_chance
-
 			local pos = parent1.object:get_pos()
 
 			-- can't see an easy way to pass horn attribute into
