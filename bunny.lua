@@ -122,8 +122,6 @@ mobs:register_mob("mobs_animal:bunny", {
 			self.object:set_properties({textures = self.base_texture})
 		end
 
-		self.base_texture = self.texture
-
 		return true -- run only once, false/nil runs every activation
 	end
 })
