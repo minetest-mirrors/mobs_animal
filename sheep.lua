@@ -34,6 +34,18 @@ for _, col in ipairs(all_colours) do
 
 	local function horn_texture_sel(horns, gotten, colr)
 
+		-- get override colours hex value from table
+		if colr then
+
+			for _2, col2 in ipairs(all_colours) do
+
+				if col2[1] == colr then
+					colr = col2[3]
+					break
+				end
+			end
+		end
+
 		local base_text = "mobs_sheep_base.png"
 		local wool_shave_text = "mobs_sheep_wool.png"
 		local shav_text = "mobs_sheep_shaved.png"
@@ -390,11 +402,11 @@ if not mobs.custom_spawn_animal then
 		on_spawn = function(self, pos)
 
 			local nat_colors = {-- reference for all_colours table
-				["white"]     = 14,
-				["grey"]      = 8,
+				["white"] = 14,
+				["grey"] = 8,
 				["dark_grey"] = 6,
-				["black"]     = 1,
-				["brown"]     = 3
+				["black"] = 1,
+				["brown"] = 3
 			}
 
 			local function random_sheep(pos, first)
