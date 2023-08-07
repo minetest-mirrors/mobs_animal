@@ -35,17 +35,28 @@ if input then
 end
 
 
+-- helper function
+local function ddoo(mob)
+
+	if minetest.settings:get_bool("mobs_animal." .. mob) == false then
+		print("[Mobs_Animal] " .. mob .. " disabled!")
+		return
+	end
+
+	dofile(path .. mob .. ".lua")
+end
+
 -- Animals
-dofile(path .. "chicken.lua") -- JKmurray
-dofile(path .. "cow.lua") -- KrupnoPavel
-dofile(path .. "rat.lua") -- PilzAdam
-dofile(path .. "sheep.lua") -- PilzAdam
-dofile(path .. "warthog.lua") -- KrupnoPavel
-dofile(path .. "bee.lua") -- KrupnoPavel
-dofile(path .. "bunny.lua") -- ExeterDad
-dofile(path .. "kitten.lua") -- Jordach/BFD
-dofile(path .. "penguin.lua") -- D00Med
-dofile(path .. "panda.lua") -- AspireMint
+ddoo("chicken") -- JKmurray
+ddoo("cow") -- KrupnoPavel
+ddoo("rat") -- PilzAdam
+ddoo("sheep") -- PilzAdam
+ddoo("warthog") -- KrupnoPavel
+ddoo("bee") -- KrupnoPavel
+ddoo("bunny") -- ExeterDad
+ddoo("kitten") -- Jordach/BFD
+ddoo("penguin") -- D00Med
+ddoo("panda") -- AspireMint
 
 
 -- Load custom spawning
