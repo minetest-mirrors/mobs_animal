@@ -1,4 +1,6 @@
-local S = mobs.intllib_animal
+-- Translation support
+local S = minetest.get_translator("mobs_animal")
+
 local random = math.random
 local all_colours = {
 	{"black",      S("Black"),      "#212121b0"}, -- referenced down in mobs:spawn

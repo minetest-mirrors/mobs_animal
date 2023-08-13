@@ -1,5 +1,6 @@
+-- Translation support
+local S = minetest.get_translator("mobs_animal")
 
-local S = mobs.intllib_animal
 local hairball = minetest.settings:get("mobs_hairball")
 
 local kitten_types = {
