@@ -444,7 +444,10 @@ if not mobs.custom_spawn_animal then
 				local entity = mobs:add_mob(pos,
 						{name = "mobs_animal:sheep_" .. types, child = lamb})
 
-				if entity and not lamb then
+-- nil check
+if not entity then return end
+
+				if not lamb then
 					-- Set horns attribute, lower height will be rarer.
 					-- This wont affect mobs spawned by egg those only spawn hornless sheep.
 					local horns = random(max_ht) <= pos.y
