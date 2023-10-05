@@ -223,8 +223,9 @@ for _, col in ipairs(all_colours) do
 			self.base_texture = {textures}
 
 			local pos = self.object:get_pos()
+			local prop = self.object:get_properties()
 
-			pos.y = pos.y + (self.collisionbox[2] * -1) - 0.4
+			pos.y = pos.y + (prop.collisionbox[2] * -1) - 0.4
 
 			self.object:set_pos(pos)
 
