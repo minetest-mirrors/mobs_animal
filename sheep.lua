@@ -214,6 +214,15 @@ for _, col in ipairs(all_colours) do
 			return false
 		end,
 
+		-- fix any issue with horns by re-checking
+		on_spawn = function(self)
+
+			local textures = horn_texture_sel(self.attribute_horns, self.gotten)
+
+			self.object:set_properties({textures = {textures}})
+			self.base_texture = {textures}
+		end,
+
 		on_grown = function(self)
 
 			-- add the horns if we have horns when fully grown
