@@ -217,6 +217,8 @@ for _, col in ipairs(all_colours) do
 		-- fix any issue with horns by re-checking
 		on_spawn = function(self)
 
+			if self.child then return end -- baby sheep dont have horns
+
 			local textures = horn_texture_sel(self.attribute_horns, self.gotten)
 
 			self.object:set_properties({textures = {textures}})
