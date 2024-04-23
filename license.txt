@@ -24,7 +24,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-Honey and Cheese block by TenPlus1 under CC0
+Honey block, cheese and Cheese block by TenPlus1 under CC0
 
 Chicken/Cow/Panda/Pig/Sheep sounds from freesounds.org under CC0
 
