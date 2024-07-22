@@ -339,9 +339,11 @@ for _, col in ipairs(all_colours) do
 
 							if ent then
 
+								local prop = self.object:get_properties()
+
 								-- add old sheep attributes
 								ent.attribute_horns = self.attribute_horns
-								ent.nametag = self.nametag
+								ent._nametag = prop.nametag
 								ent.owner = name
 								ent.tamed = true
 								ent.protected = self.protected
@@ -354,8 +356,7 @@ for _, col in ipairs(all_colours) do
 
 								ent.base_texture = {textures}
 								ent.object:set_properties({
-									textures = {textures},
-									nametag = self.nametag
+									textures = {textures}
 								})
 
 								-- remove old sheep
