@@ -173,19 +173,19 @@ mobs:alias_mob("mobs:cow", "mobs_animal:cow") -- compatibility
 
 -- bucket of milk
 minetest.register_craftitem(":mobs:bucket_milk", {
-	description = S("Bucket of Milk"),
+	description = S("Bucket of Milk") .. " (♥8)",
 	inventory_image = "mobs_bucket_milk.png",
 	stack_max = 1,
 	on_use = minetest.item_eat(8, "bucket:bucket_empty"),
-	groups = {food_milk = 1, flammable = 3, drink = 1}
+	groups = {food_milk = 1, flammable = 3, drink = 1, eatable = 8}
 })
 
 -- glass of milk
 minetest.register_craftitem(":mobs:glass_milk", {
-	description = S("Glass of Milk"),
+	description = S("Glass of Milk") .. " (♥2)",
 	inventory_image = "mobs_glass_milk.png",
 	on_use = minetest.item_eat(2, "vessels:drinking_glass"),
-	groups = {food_milk_glass = 1, flammable = 3, vessel = 1, drink = 1}
+	groups = {food_milk_glass = 1, flammable = 3, vessel = 1, drink = 1, eatable = 2}
 })
 
 minetest.register_craft({
@@ -213,10 +213,10 @@ minetest.register_craft({
 
 -- butter
 minetest.register_craftitem(":mobs:butter", {
-	description = S("Butter"),
+	description = S("Butter") .. " (♥1)",
 	inventory_image = "mobs_butter.png",
 	on_use = minetest.item_eat(1),
-	groups = {food_butter = 1, flammable = 2}
+	groups = {food_butter = 1, flammable = 2, eatable = 1}
 })
 
 local salt_item = "default:sapling" -- some saplings are high in sodium
@@ -233,10 +233,10 @@ minetest.register_craft({
 
 -- cheese wedge
 minetest.register_craftitem(":mobs:cheese", {
-	description = S("Cheese"),
+	description = S("Cheese") .. " (♥4)",
 	inventory_image = "mobs_cheese.png",
 	on_use = minetest.item_eat(4),
-	groups = {food_cheese = 1, flammable = 2}
+	groups = {food_cheese = 1, flammable = 2, eatable = 4}
 })
 
 minetest.register_craft({

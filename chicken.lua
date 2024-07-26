@@ -270,10 +270,10 @@ minetest.register_node(":mobs:egg", {
 
 -- fried egg
 minetest.register_craftitem(":mobs:chicken_egg_fried", {
-	description = S("Fried Egg"),
+	description = S("Fried Egg") .. " (♥2)",
 	inventory_image = "mobs_chicken_egg_fried.png",
 	on_use = minetest.item_eat(2),
-	groups = {food_egg_fried = 1, flammable = 2}
+	groups = {food_egg_fried = 1, flammable = 2, eatable = 2}
 })
 
 minetest.register_craft({
@@ -284,18 +284,18 @@ minetest.register_craft({
 
 -- raw chicken
 minetest.register_craftitem(":mobs:chicken_raw", {
-	description = S("Raw Chicken"),
+	description = S("Raw Chicken") .. " (♥2)",
 	inventory_image = "mobs_chicken_raw.png",
 	on_use = minetest.item_eat(2),
-	groups = {food_meat_raw = 1, food_chicken_raw = 1, flammable = 2}
+	groups = {food_meat_raw = 1, food_chicken_raw = 1, flammable = 2, eatable = 2}
 })
 
 -- cooked chicken
 minetest.register_craftitem(":mobs:chicken_cooked", {
-	description = S("Cooked Chicken"),
+	description = S("Cooked Chicken") .. " (♥6)",
 	inventory_image = "mobs_chicken_cooked.png",
 	on_use = minetest.item_eat(6),
-	groups = {food_meat = 1, food_chicken = 1, flammable = 2}
+	groups = {food_meat = 1, food_chicken = 1, flammable = 2, eatable = 6}
 })
 
 minetest.register_craft({

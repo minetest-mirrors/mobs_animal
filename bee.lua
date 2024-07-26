@@ -73,10 +73,10 @@ mobs:alias_mob("mobs:bee", "mobs_animal:bee")
 
 -- honey
 minetest.register_craftitem(":mobs:honey", {
-	description = S("Honey"),
+	description = S("Honey") .. " (♥4)",
 	inventory_image = "mobs_honey_inv.png",
 	on_use = minetest.item_eat(4),
-	groups = {food_honey = 1, food_sugar = 1, flammable = 1}
+	groups = {food_honey = 1, food_sugar = 1, flammable = 1, eatable = 4}
 })
 
 
