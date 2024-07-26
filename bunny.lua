@@ -157,19 +157,23 @@ mobs:alias_mob("mobs:bunny", "mobs_animal:bunny") -- compatibility
 
 -- raw rabbit
 minetest.register_craftitem(":mobs:rabbit_raw", {
-	description = S("Raw Rabbit") .. " (♥3)",
+	description = S("Raw Rabbit"),
 	inventory_image = "mobs_rabbit_raw.png",
 	on_use = minetest.item_eat(3),
-	groups = {food_meat_raw = 1, food_rabbit_raw = 1, flammable = 2, eatable = 3}
+	groups = {food_meat_raw = 1, food_rabbit_raw = 1}
 })
+
+mobs.add_eatable("mobs:rabbit_raw", 3)
 
 -- cooked rabbit
 minetest.register_craftitem(":mobs:rabbit_cooked", {
-	description = S("Cooked Rabbit") .. " (♥5)",
+	description = S("Cooked Rabbit"),
 	inventory_image = "mobs_rabbit_cooked.png",
 	on_use = minetest.item_eat(5),
-	groups = {food_meat = 1, food_rabbit = 1, flammable = 2, eatable = 5}
+	groups = {food_meat = 1, food_rabbit = 1}
 })
+
+mobs.add_eatable("mobs:rabbit_cooked", 5)
 
 minetest.register_craft({
 	type = "cooking",
