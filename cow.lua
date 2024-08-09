@@ -1,6 +1,9 @@
 -- Translation support
 local S = minetest.get_translator("mobs_animal")
 
+-- check for default mod
+local mod_def = minetest.get_modpath("default")
+
 -- Cow by sirrobzeroone
 
 mobs:register_mob("mobs_animal:cow", {
@@ -261,7 +264,7 @@ minetest.register_node(":mobs:cheeseblock", {
 	tiles = {"mobs_cheeseblock.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 3},
-	sounds = default and default.node_sound_dirt_defaults()
+	sounds = mod_def and default.node_sound_dirt_defaults()
 })
 
 minetest.register_craft({

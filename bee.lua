@@ -1,6 +1,9 @@
 -- Translation support
 local S = minetest.get_translator("mobs_animal")
 
+-- check for default mod
+local mod_def = minetest.get_modpath("default")
+
 -- Bee by KrupnoPavel (.b3d model by sirrobzeroone)
 
 mobs:register_mob("mobs_animal:bee", {
@@ -92,7 +95,7 @@ minetest.register_node(":mobs:beehive", {
 	walkable = true,
 	groups = {oddly_breakable_by_hand = 3, flammable = 1, disable_suffocation = 1},
 	is_ground_content = false,
-	sounds = default and default.node_sound_defaults(),
+	sounds = mod_def and default.node_sound_defaults(),
 
 	on_construct = function(pos)
 
@@ -166,7 +169,7 @@ minetest.register_node(":mobs:honey_block", {
 	tiles = {"mobs_honey_block.png"},
 	groups = {snappy = 3, flammable = 2},
 	is_ground_content = false,
-	sounds = default and default.node_sound_dirt_defaults()
+	sounds = mod_def and default.node_sound_dirt_defaults()
 })
 
 -- recipe
