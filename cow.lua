@@ -1,8 +1,5 @@
--- Translation support
-local S = minetest.get_translator("mobs_animal")
 
--- check for default mod
-local mod_def = minetest.get_modpath("default")
+local S = minetest.get_translator("mobs_animal")
 
 -- Cow by sirrobzeroone
 
@@ -24,9 +21,7 @@ mobs:register_mob("mobs_animal:cow", {
 		{"mobs_cow2.png"}
 	},
 	makes_footstep_sound = true,
-	sounds = {
-		random = "mobs_cow",
-	},
+	sounds = {random = "mobs_cow"},
 	walk_velocity = 1,
 	run_velocity = 2,
 	jump = true,
@@ -40,25 +35,12 @@ mobs:register_mob("mobs_animal:cow", {
 	lava_damage = 5,
 	light_damage = 0,
 	animation = {
-		stand_start = 0,
-		stand_end = 30,
-		stand_speed = 20,
-		stand1_start = 35,
-		stand1_end = 75,
-		stand1_speed = 20,
-		walk_start = 85,
-		walk_end = 114,
-		walk_speed = 20,
-		run_start = 120,
-		run_end = 140,
-		run_speed = 30,
-		punch_start = 145,
-		punch_end = 160,
-		punch_speed = 20,
-		die_start = 165,
-		die_end = 185,
-		die_speed = 10,
-		die_loop = false
+		stand_start = 0, stand_end = 30, stand_speed = 20,
+		stand1_start = 35, stand1_end = 75, stand1_speed = 20,
+		walk_start = 85, walk_end = 114, walk_speed = 20,
+		run_start = 120, run_end = 140, run_speed = 30,
+		punch_start = 145, punch_end = 160, punch_speed = 20,
+		die_start = 165, die_end = 185, die_speed = 10, die_loop = false
 	},
 	follow = {
 		"farming:wheat", "default:grass_1", "farming:barley",
@@ -79,9 +61,7 @@ mobs:register_mob("mobs_animal:cow", {
 		if mobs:feed_tame(self, clicker, 8, true, true) then
 
 			-- if fed 7x wheat or grass then cow can be milked again
-			if self.food and self.food > 6 then
-				self.gotten = false
-			end
+			if self.food and self.food > 6 then self.gotten = false end
 
 			return
 		end
@@ -98,10 +78,7 @@ mobs:register_mob("mobs_animal:cow", {
 		or item == "wooden_bucket:bucket_wood_empty"
 		or item == "bucket_wooden:bucket_empty" then
 
-			--if self.gotten == true
-			if self.child == true then
-				return
-			end
+			if self.child == true then return end
 
 			if self.gotten == true then
 
@@ -143,14 +120,14 @@ mobs:register_mob("mobs_animal:cow", {
 
 		self.food = (self.food or 0) + 1
 
-		-- if cow replaces 8x grass then it can be milked again
-		if self.food >= 8 then
+		if self.food >= 8 then -- replace 8x grass and can be milked again
 			self.food = 0
 			self.gotten = false
 		end
 	end
 })
 
+-- where to spawn
 
 if not mobs.custom_spawn_animal then
 
@@ -167,14 +144,16 @@ if not mobs.custom_spawn_animal then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_animal:cow", S("Cow"), "mobs_cow_inv.png")
 
+-- old mobs mod compatibility
 
-mobs:alias_mob("mobs:cow", "mobs_animal:cow") -- compatibility
-
+mobs:alias_mob("mobs:cow", "mobs_animal:cow")
 
 -- bucket of milk
+
 minetest.register_craftitem(":mobs:bucket_milk", {
 	description = S("Bucket of Milk"),
 	inventory_image = "mobs_bucket_milk.png",
@@ -185,7 +164,7 @@ minetest.register_craftitem(":mobs:bucket_milk", {
 
 mobs.add_eatable("mobs:bucket_milk", 8)
 
--- glass of milk
+-- glass of milk and recipes
 minetest.register_craftitem(":mobs:glass_milk", {
 	description = S("Glass of Milk"),
 	inventory_image = "mobs_glass_milk.png",
@@ -217,8 +196,8 @@ minetest.register_craft({
 	}
 })
 
+-- butter and recipe
 
--- butter
 minetest.register_craftitem(":mobs:butter", {
 	description = S("Butter"),
 	inventory_image = "mobs_butter.png",
@@ -240,7 +219,8 @@ minetest.register_craft({
 	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
 })
 
--- cheese wedge
+-- cheese wedge and recipe
+
 minetest.register_craftitem(":mobs:cheese", {
 	description = S("Cheese"),
 	inventory_image = "mobs_cheese.png",
@@ -258,13 +238,14 @@ minetest.register_craft({
 	replacements = {{"mobs:bucket_milk", "bucket:bucket_empty"}}
 })
 
--- cheese block
+-- cheese block and recipe
+
 minetest.register_node(":mobs:cheeseblock", {
 	description = S("Cheese Block"),
 	tiles = {"mobs_cheeseblock.png"},
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 3},
-	sounds = mod_def and default.node_sound_dirt_defaults()
+	sounds = mobs.node_sound_dirt_defaults()
 })
 
 minetest.register_craft({
@@ -281,8 +262,8 @@ minetest.register_craft({
 	recipe = {{"mobs:cheeseblock"}}
 })
 
-
 -- check for either of the wood bucket mods and add compatibility
+
 local wb = minetest.get_modpath("wooden_bucket")
 local bw = minetest.get_modpath("bucket_wooden")
 

@@ -1,4 +1,4 @@
--- Translation support
+
 local S = minetest.get_translator("mobs_animal")
 
 -- Bunny by ExeterDad
@@ -38,12 +38,9 @@ mobs:register_mob("mobs_animal:bunny", {
 	fear_height = 2,
 	animation = {
 		speed_normal = 15,
-		stand_start = 1,
-		stand_end = 15,
-		walk_start = 16,
-		walk_end = 24,
-		punch_start = 16,
-		punch_end = 24
+		stand_start = 1, stand_end = 15,
+		walk_start = 16, walk_end = 24,
+		punch_start = 16, punch_end = 24
 	},
 	follow = {"farming:carrot", "farming_plus:carrot_item", "default:grass_1"},
 	view_range = 8,
@@ -93,9 +90,7 @@ mobs:register_mob("mobs_animal:bunny", {
 			obj:set_properties({textures = {"mobs_bunny_evil.png"}, hp_max = 20})
 
 			-- remove old bunny
-			if obj:get_luaentity() then
-				mobs:remove(self, true)
-			end
+			if obj:get_luaentity() then mobs:remove(self, true) end
 		end
 	end,
 
@@ -126,14 +121,15 @@ mobs:register_mob("mobs_animal:bunny", {
 	end
 })
 
-
-local spawn_on = "default:dirt_with_grass"
-
-if minetest.get_modpath("ethereal") then
-	spawn_on = "ethereal:prairie_dirt"
-end
+-- where to spawn
 
 if not mobs.custom_spawn_animal then
+
+	local spawn_on = "default:dirt_with_grass"
+
+	if minetest.get_modpath("ethereal") then
+		spawn_on = "ethereal:prairie_dirt"
+	end
 
 	mobs:spawn({
 		name = "mobs_animal:bunny",
@@ -148,14 +144,16 @@ if not mobs.custom_spawn_animal then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_animal:bunny", S("Bunny"), "mobs_bunny_inv.png", 0)
 
+-- compatibility (only used for older mobs compatibility)
 
-mobs:alias_mob("mobs:bunny", "mobs_animal:bunny") -- compatibility
-
+mobs:alias_mob("mobs:bunny", "mobs_animal:bunny")
 
 -- raw rabbit
+
 minetest.register_craftitem(":mobs:rabbit_raw", {
 	description = S("Raw Rabbit"),
 	inventory_image = "mobs_rabbit_raw.png",
@@ -166,6 +164,7 @@ minetest.register_craftitem(":mobs:rabbit_raw", {
 mobs.add_eatable("mobs:rabbit_raw", 3)
 
 -- cooked rabbit
+
 minetest.register_craftitem(":mobs:rabbit_cooked", {
 	description = S("Cooked Rabbit"),
 	inventory_image = "mobs_rabbit_cooked.png",
@@ -182,18 +181,15 @@ minetest.register_craft({
 	cooktime = 5
 })
 
--- rabbit hide
+-- rabbit hide and recipes
+
 minetest.register_craftitem(":mobs:rabbit_hide", {
 	description = S("Rabbit Hide"),
 	inventory_image = "mobs_rabbit_hide.png",
 	groups = {flammable = 2, pelt = 1}
 })
 
-minetest.register_craft({
-	type = "fuel",
-	recipe = "mobs:rabbit_hide",
-	burntime = 2
-})
+minetest.register_craft({type = "fuel", recipe = "mobs:rabbit_hide", burntime = 2})
 
 minetest.register_craft({
 	output = "mobs:leather",

@@ -1,10 +1,10 @@
--- Translation support
+
 local S = minetest.get_translator("mobs_animal")
 
 -- Rat by KPavel and PilzAdam (B3D model by sirrobzeroone)
 
 mobs:register_mob("mobs_animal:rat", {
-stepheight = 0.6,
+	stepheight = 0.6,
 	type = "animal",
 	passive = true,
 	hp_min = 1,
@@ -18,9 +18,7 @@ stepheight = 0.6,
 		{"mobs_rat2.png"}
 	},
 	makes_footstep_sound = false,
-	sounds = {
-		random = "mobs_rat"
-	},
+	sounds = {random = "mobs_rat"},
 	walk_velocity = 1,
 	run_velocity = 2,
 	runaway = true,
@@ -59,8 +57,8 @@ stepheight = 0.6,
 ]]
 })
 
-
 -- example on_spawn function
+
 local function rat_spawn(self, pos)
 	self = self:get_luaentity()
 	print (self.name, pos.x, pos.y, pos.z)
@@ -68,6 +66,7 @@ local function rat_spawn(self, pos)
 	self.health = 100
 end
 
+-- where to spawn
 
 if not mobs.custom_spawn_animal then
 
@@ -83,14 +82,16 @@ if not mobs.custom_spawn_animal then
 	})
 end
 
+-- spawn egg
 
 mobs:register_egg("mobs_animal:rat", S("Rat"), "mobs_rat_inv.png")
 
+-- compatibility with older mobs mod
 
-mobs:alias_mob("mobs:rat", "mobs_animal:rat") -- compatibility
-
+mobs:alias_mob("mobs:rat", "mobs_animal:rat")
 
 -- cooked rat, yummy!
+
 minetest.register_craftitem(":mobs:rat_cooked", {
 	description = S("Cooked Rat"),
 	inventory_image = "mobs_cooked_rat.png",

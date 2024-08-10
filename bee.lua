@@ -1,8 +1,5 @@
--- Translation support
-local S = minetest.get_translator("mobs_animal")
 
--- check for default mod
-local mod_def = minetest.get_modpath("default")
+local S = minetest.get_translator("mobs_animal")
 
 -- Bee by KrupnoPavel (.b3d model by sirrobzeroone)
 
@@ -15,15 +12,11 @@ mobs:register_mob("mobs_animal:bee", {
 	collisionbox = {-0.2, -0.01, -0.2, 0.2, 0.5, 0.2},
 	visual = "mesh",
 	mesh = "mobs_bee.b3d",
-	textures = {
-		{"mobs_bee.png"}
-	},
+	textures = { {"mobs_bee.png"} },
 	blood_texture = "mobs_bee_inv.png",
 	blood_amount = 1,
 	makes_footstep_sound = false,
-	sounds = {
-		random = "mobs_bee"
-	},
+	sounds = { random = "mobs_bee" },
 	walk_velocity = 1,
 	jump = true,
 	drops = {
@@ -36,10 +29,8 @@ mobs:register_mob("mobs_animal:bee", {
 	fall_speed = -3,
 	animation = {
 		speed_normal = 15,
-		stand_start = 0,
-		stand_end = 30,
-		walk_start = 35,
-		walk_end = 65
+		stand_start = 0, stand_end = 30,
+		walk_start = 35, walk_end = 65
 	},
 
 	on_rightclick = function(self, clicker)
@@ -50,6 +41,8 @@ mobs:register_mob("mobs_animal:bee", {
 --		print ("------", self.name, dtime, self.health)
 --	end,
 })
+
+-- where to spawn
 
 if not mobs.custom_spawn_animal then
 
@@ -65,16 +58,16 @@ if not mobs.custom_spawn_animal then
 	})
 end
 
-
 -- spawn egg
+
 mobs:register_egg("mobs_animal:bee", S("Bee"), "mobs_bee_inv.png")
 
-
 -- compatibility (only required if moving from old mobs to mobs_redo)
+
 mobs:alias_mob("mobs:bee", "mobs_animal:bee")
 
-
 -- honey
+
 minetest.register_craftitem(":mobs:honey", {
 	description = S("Honey"),
 	inventory_image = "mobs_honey_inv.png",
@@ -84,7 +77,8 @@ minetest.register_craftitem(":mobs:honey", {
 
 mobs.add_eatable("mobs:honey", 4)
 
--- beehive (when placed spawns bee)
+-- beehive (1 in 4 chance of spawning bee when placed)
+
 minetest.register_node(":mobs:beehive", {
 	description = S("Beehive"),
 	drawtype = "plantlike",
@@ -95,7 +89,7 @@ minetest.register_node(":mobs:beehive", {
 	walkable = true,
 	groups = {oddly_breakable_by_hand = 3, flammable = 1, disable_suffocation = 1},
 	is_ground_content = false,
-	sounds = mod_def and default.node_sound_defaults(),
+	sounds = mobs.node_sound_defaults(),
 
 	on_construct = function(pos)
 
@@ -131,48 +125,42 @@ minetest.register_node(":mobs:beehive", {
 
 			local hp = puncher and puncher:get_hp()
 
-			if hp then
-				puncher:set_hp(hp - 4)
-			end
+			if hp then puncher:set_hp(hp - 4) end
 		end)
 	end,
 
 	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 
-		if listname == "beehive" then
-			return 0
-		end
+		if listname == "beehive" then return 0 end
 
 		return stack:get_count()
 	end,
 
-	can_dig = function(pos,player)
+	can_dig = function(pos,player) -- can only dig when no honey inside
 
 		local meta = minetest.get_meta(pos)
 
-		-- only dig beehive if no honey inside
 		return meta:get_inventory():is_empty("beehive")
 	end
 })
 
 -- beehive recipe
+
 minetest.register_craft({
 	output = "mobs:beehive",
-	recipe = {
-		{"mobs:bee","mobs:bee","mobs:bee"}
-	}
+	recipe = {{"mobs:bee","mobs:bee","mobs:bee"}}
 })
 
--- honey block
+-- honey block and craft recipes
+
 minetest.register_node(":mobs:honey_block", {
 	description = S("Honey Block"),
 	tiles = {"mobs_honey_block.png"},
 	groups = {snappy = 3, flammable = 2},
 	is_ground_content = false,
-	sounds = mod_def and default.node_sound_dirt_defaults()
+	sounds = mobs.node_sound_dirt_defaults()
 })
 
--- recipe
 minetest.register_craft({
 	output = "mobs:honey_block",
 	recipe = {
@@ -189,38 +177,31 @@ minetest.register_craft({
 	}
 })
 
-
 -- beehive workings
+
 minetest.register_abm({
 	nodenames = {"mobs:beehive"},
 	interval = 12,
 	chance = 6,
 	catch_up = false,
+
 	action = function(pos, node)
 
 		-- bee's only make honey during the day
 		local tod = (minetest.get_timeofday() or 0) * 24000
 
-		if tod < 5500 or tod > 18500 then
-			return
-		end
+		if tod < 5500 or tod > 18500 then return end
 
-		-- is hive full?
-		local meta = minetest.get_meta(pos)
-		if not meta then return end -- for older beehives
+		local meta = minetest.get_meta(pos) ; if not meta then return end
 		local inv = meta:get_inventory()
 		local honey = inv:get_stack("beehive", 1):get_count()
 
-		-- is hive full?
-		if honey > 11 then
-			return
-		end
+		if honey > 11 then return end -- return if hive full
 
 		-- no flowers no honey, nuff said!
 		if #minetest.find_nodes_in_area_under_air(
-			{x = pos.x - 4, y = pos.y - 3, z = pos.z - 4},
-			{x = pos.x + 4, y = pos.y + 3, z = pos.z + 4},
-			"group:flower") > 3 then
+				{x = pos.x - 4, y = pos.y - 3, z = pos.z - 4},
+				{x = pos.x + 4, y = pos.y + 3, z = pos.z + 4}, "group:flower") > 3 then
 
 			inv:add_item("beehive", "mobs:honey")
 		end
