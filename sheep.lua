@@ -90,7 +90,10 @@ for _, col in ipairs(all_colours) do
 		},
 		gotten_texture = {"mobs_sheep_base.png^mobs_sheep_shaved.png"},
 		makes_footstep_sound = true,
-		sounds = {random = "mobs_sheep"},
+		sounds = {
+			random = "mobs_sheep",
+			replace = "default_dig_crumbly"
+		},
 		walk_velocity = 1,
 		run_velocity = 2,
 		runaway = true,

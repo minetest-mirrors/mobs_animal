@@ -15,7 +15,8 @@ mobs:register_mob("mobs_animal:rat", {
 	mesh = "mobs_rat.b3d",
 	textures = {
 		{"mobs_rat.png"},
-		{"mobs_rat2.png"}
+		{"mobs_rat2.png"},
+		{"mobs_rat3.png"}
 	},
 	makes_footstep_sound = false,
 	sounds = {random = "mobs_rat"},

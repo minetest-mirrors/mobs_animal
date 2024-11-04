@@ -21,7 +21,10 @@ mobs:register_mob("mobs_animal:cow", {
 		{"mobs_cow2.png"}
 	},
 	makes_footstep_sound = true,
-	sounds = {random = "mobs_cow"},
+	sounds = {
+		random = "mobs_cow",
+		replace = "default_dig_crumbly"
+	},
 	walk_velocity = 1,
 	run_velocity = 2,
 	jump = true,

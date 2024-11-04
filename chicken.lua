@@ -20,7 +20,10 @@ mobs:register_mob("mobs_animal:chicken", {
 	},
 	child_texture = {{"mobs_chick.png"}},
 	makes_footstep_sound = true,
-	sounds = {random = "mobs_chicken"},
+	sounds = {
+		random = "mobs_chicken",
+		replace = "default_dig_crumbly"
+	},
 	walk_velocity = 1,
 	run_velocity = 3,
 	runaway = true,
