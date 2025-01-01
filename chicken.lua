@@ -9,7 +9,7 @@ mobs:register_mob("mobs_animal:chicken", {
 	passive = true,
 	hp_min = 5,
 	hp_max = 10,
-	armor = 200,
+	armor = 100,
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
 	mesh = "mobs_chicken.b3d",
