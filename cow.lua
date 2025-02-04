@@ -55,6 +55,19 @@ mobs:register_mob("mobs_animal:cow", {
 		{"group:grass", "air", 0},
 		{"default:dirt_with_grass", "default:dirt", -1}
 	},
+--[[
+	pick_up = {"default:grass_1", "default:dry_grass_1"},
+	on_pick_up = function(self, entity)
+
+		local istack = ItemStack(entity.itemstring)
+
+		print("-- took", istack:get_name())
+
+		istack:take_item(1)
+
+		return istack
+	end,
+]]
 --	stay_near = {{"farming:straw", "group:grass"}, 10},
 	fear_height = 2,
 
