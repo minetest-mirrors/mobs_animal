@@ -4,6 +4,15 @@
 local S = minetest.get_translator("mobs_animal")
 local random = math.random
 
+-- should sheep eat grass blocks and mess up the environment?
+
+local eat_gb = minetest.settings:get_bool("mobs_animal.eat_grass_block") ~= false
+local replace_what = { {"group:grass", "air", -1} }
+
+if eat_gb then
+	table.insert(replace_what, {"default:dirt_with_grass", "default:dirt", -2})
+end
+
 -- sheep colour table
 
 local all_colours = {
@@ -115,10 +124,7 @@ for _, col in ipairs(all_colours) do
 		},
 		view_range = 8,
 		replace_rate = 10,
-		replace_what = {
-			{"group:grass", "air", -1},
-			{"default:dirt_with_grass", "default:dirt", -2}
-		},
+		replace_what = replace_what,
 		fear_height = 3,
 
 		on_replace = function(self, pos, oldnode, newnode)

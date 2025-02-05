@@ -1,6 +1,15 @@
 
 local S = minetest.get_translator("mobs_animal")
 
+-- should cows eat grass blocks and mess up the environment?
+
+local eat_gb = minetest.settings:get_bool("mobs_animal.eat_grass_block") ~= false
+local replace_what = { {"group:grass", "air", 0} }
+
+if eat_gb then
+	table.insert(replace_what, {"default:dirt_with_grass", "default:dirt", -1})
+end
+
 -- Cow by sirrobzeroone
 
 mobs:register_mob("mobs_animal:cow", {
@@ -51,10 +60,7 @@ mobs:register_mob("mobs_animal:cow", {
 	},
 	view_range = 8,
 	replace_rate = 10,
-	replace_what = {
-		{"group:grass", "air", 0},
-		{"default:dirt_with_grass", "default:dirt", -1}
-	},
+	replace_what = replace_what,
 --[[
 	pick_up = {"default:grass_1", "default:dry_grass_1"},
 	on_pick_up = function(self, entity)
