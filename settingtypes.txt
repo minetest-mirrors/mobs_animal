@@ -10,4 +10,4 @@ mobs_animal.sheep (Enable Sheep) bool true
 mobs_animal.warthog (Enable Warthog) bool true
 mobs_animal.hairball (Enable Kitten Hairball drops) bool true
 
-mobs_animal.eat_grass_block (Enable Cow/Sheep eating grass blocks) bool true
+mobs_animal.eat_grass_block (Enable Cow/Sheep eating grass blocks) bool false

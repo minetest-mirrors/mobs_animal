@@ -6,7 +6,7 @@ local random = math.random
 
 -- should sheep eat grass blocks and mess up the environment?
 
-local eat_gb = minetest.settings:get_bool("mobs_animal.eat_grass_block") ~= false
+local eat_gb = minetest.settings:get_bool("mobs_animal.eat_grass_block")
 local replace_what = { {"group:grass", "air", -1} }
 
 if eat_gb then
