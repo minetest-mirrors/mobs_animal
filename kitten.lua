@@ -1,8 +1,8 @@
 
 -- translation and hairball setting
 
-local S = minetest.get_translator("mobs_animal")
-local hairball = minetest.settings:get_bool("mobs_animal.hairball") ~= false
+local S = core.get_translator("mobs_animal")
+local hairball = core.settings:get_bool("mobs_animal.hairball") ~= false
 
 -- custom kitty types
 
@@ -74,7 +74,7 @@ mobs:register_mob("mobs_animal:kitten", {
 
 			tmp = kitten_types[n]
 
-			if minetest.find_node_near(pos, 1, tmp.nodes) then
+			if core.find_node_near(pos, 1, tmp.nodes) then
 
 				self.base_texture = tmp.skins
 				self.object:set_properties({textures = tmp.skins})
@@ -119,9 +119,9 @@ mobs:register_mob("mobs_animal:kitten", {
 
 		local pos = self.object:get_pos()
 
-		minetest.add_item(pos, "mobs:hairball")
+		core.add_item(pos, "mobs:hairball")
 
-		minetest.sound_play("default_dig_snappy", {
+		core.sound_play("default_dig_snappy", {
 				pos = pos, gain = 1.0, max_hear_distance = 5}, true)
 	end
 })
@@ -132,7 +132,7 @@ if not mobs.custom_spawn_animal then
 
 	local spawn_on = "default:dirt_with_grass"
 
-	if minetest.get_modpath("ethereal") then
+	if core.get_modpath("ethereal") then
 		spawn_on = "ethereal:grove_dirt"
 	end
 
@@ -170,7 +170,7 @@ local hairball_items = {
 	"ethereal:fish_tetra"
 }
 
-minetest.register_craftitem(":mobs:hairball", {
+core.register_craftitem(":mobs:hairball", {
 	description = S("Hairball"),
 	inventory_image = "mobs_hairball.png",
 
@@ -181,11 +181,11 @@ minetest.register_craftitem(":mobs:hairball", {
 		local newpos = {x = pos.x + dir.x, y = pos.y + dir.y + 1.5, z = pos.z + dir.z}
 		local item = hairball_items[math.random(1, #hairball_items)]
 
-		if item ~= "" and minetest.registered_items[item] then
-			minetest.add_item(newpos, {name = item})
+		if item ~= "" and core.registered_items[item] then
+			core.add_item(newpos, {name = item})
 		end
 
-		minetest.sound_play("default_place_node_hard", {
+		core.sound_play("default_place_node_hard", {
 				pos = newpos, gain = 1.0, max_hear_distance = 5}, true)
 
 		itemstack:take_item()
