@@ -12,7 +12,7 @@ mobs:register_mob("mobs_animal:pumba", {
 	owner_loyal = true,
 	attack_npcs = false,
 	reach = 2,
-	damage = 2,
+	damage = 2, attack_chance = 95,
 	hp_min = 10,
 	hp_max = 15,
 	armor = 100,

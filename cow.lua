@@ -18,7 +18,7 @@ mobs:register_mob("mobs_animal:cow", {
 	attack_type = "dogfight",
 	attack_npcs = false,
 	reach = 2,
-	damage = 4,
+	damage = 4, attack_chance = 98,
 	hp_min = 10,
 	hp_max = 20,
 	armor = 100,
