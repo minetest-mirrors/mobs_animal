@@ -59,7 +59,7 @@ mobs:register_mob("mobs_animal:kitten", {
 		stoodup_start = 0, stoodup_end = 0,
 	},
 	follow = {
-		"mobs_animal:rat", "group:food_fish_raw",
+		"mobs_animal:rat", "group:food_fish_raw", "mobs:glass_milk",
 		"mobs_fish:tropical", "mobs_fish:clownfish", "xocean:fish_edible"
 	},
 	view_range = 8,
