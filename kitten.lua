@@ -88,7 +88,24 @@ mobs:register_mob("mobs_animal:kitten", {
 
 	on_rightclick = function(self, clicker)
 
-		if mobs:feed_tame(self, clicker, 4, true, true) then return end
+		-- what are we holding?
+		local tool = clicker:get_wielded_item()
+		local item = tool and tool:get_name()
+
+		if mobs:feed_tame(self, clicker, 4, true, true) then
+
+			-- return empty glass if kitten drinks a glass of milk
+			if item == "mobs:glass_milk" and core.get_modpath("vessels")
+			and not mobs.is_creative(clicker:get_player_name()) then
+
+				local pos = self.object:get_pos()
+
+				core.add_item(pos, "vessels:drinking_glass")
+			end
+
+			return
+		end
+
 		if mobs:protect(self, clicker) then return end
 		if mobs:capture_mob(self, clicker, 50, 50, 90, false, nil) then return end
 
