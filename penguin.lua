@@ -41,7 +41,8 @@ stepheight = 0.6,
 	floats = 0,
 	follow = {
 		"group:food_fish_raw", "mobs_fish:clownfish", "mobs_fish:tropical",
-		"mobs_fish:clownfish_set", "mobs_fish:tropical_set", "xocean:fish_edible"
+		"mobs_fish:clownfish_set", "mobs_fish:tropical_set", "xocean:fish_edible",
+		"group:fish"
 	},
 	view_range = 5,
 
