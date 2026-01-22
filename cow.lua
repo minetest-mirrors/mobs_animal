@@ -184,7 +184,7 @@ core.register_craftitem(":mobs:bucket_milk", {
 	groups = {food_milk = 1, drink = 1}
 })
 
-mobs.add_eatable("mobs:bucket_milk", 8)
+mobs.add_eatable("mobs:bucket_milk", 8, 3)
 
 -- glass of milk and recipes
 core.register_craftitem(":mobs:glass_milk", {
@@ -194,7 +194,7 @@ core.register_craftitem(":mobs:glass_milk", {
 	groups = {food_milk_glass = 1, vessel = 1, drink = 1}
 })
 
-mobs.add_eatable("mobs:glass_milk", 2)
+mobs.add_eatable("mobs:glass_milk", 2, 3)
 
 core.register_craft({
 	output = "mobs:glass_milk 4",
@@ -299,8 +299,10 @@ if wb or bw then
 		inventory_image = "mobs_wooden_bucket_milk.png",
 		stack_max = 1,
 		on_use = core.item_eat(8, return_item),
-		groups = {food_milk = 1, flammable = 3, drink = 1}
+		groups = {food_milk = 1, drink = 1}
 	})
+
+	mobs.add_eatable("mobs:wooden_bucker_milk", 8, 3)
 
 	core.register_craft({
 		output = "mobs:glass_milk 4",
