@@ -12,7 +12,7 @@ mobs:register_mob("mobs_animal:panda", {
 	owner_loyal = true,
 	attack_npcs = false,
 	reach = 2,
-	damage = 3,
+	damage = 3, attack_chance = 90,
 	hp_min = 10,
 	hp_max = 24,
 	armor = 100,
