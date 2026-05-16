@@ -61,8 +61,7 @@ mobs:register_mob("mobs_animal:bunny", {
 		local item = clicker:get_wielded_item()
 		local player_name = clicker:get_player_name()
 
-		if self.owner == player_name
-		and item:get_name() == "mobs:lava_orb" then
+		if self.owner == player_name and item:get_name() == "mobs:lava_orb" then
 
 			-- take orb
 			if not mobs.is_creative(clicker:get_player_name()) then

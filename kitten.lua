@@ -203,7 +203,7 @@ core.register_craftitem(":mobs:hairball", {
 		end
 
 		core.sound_play("default_place_node_hard", {
-				pos = newpos, gain = 1.0, max_hear_distance = 5}, true)
+				pos = newpos, max_hear_distance = 5}, true)
 
 		itemstack:take_item()
 
