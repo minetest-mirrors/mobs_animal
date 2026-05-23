@@ -54,8 +54,8 @@ mobs:register_mob("mobs_animal:cow", {
 	lava_damage = 5,
 	light_damage = 0,
 	animation = {
-		stand_start = 0, stand_end = 30, stand_speed = 20,
-		stand1_start = 35, stand1_end = 75, stand1_speed = 20,
+		replace_start = 0, replace_end = 30, replace_speed = 20, replace_loop = false,
+		stand_start = 35, stand_end = 75, stand_speed = 20,
 		walk_start = 85, walk_end = 114, walk_speed = 20,
 		run_start = 120, run_end = 140, run_speed = 40,
 		punch_start = 145, punch_end = 160, punch_speed = 20,
@@ -68,6 +68,7 @@ mobs:register_mob("mobs_animal:cow", {
 	view_range = 8,
 	replace_rate = 10,
 	replace_what = replace_what,
+
 --[[
 	pick_up = {"default:grass_1", "default:dry_grass_1"},
 	on_pick_up = function(self, entity)
@@ -136,6 +137,13 @@ mobs:register_mob("mobs_animal:cow", {
 		if self.food > 7 then -- replace 8x grass and can be milked again
 			self.food = 0
 			self.gotten = nil
+		end
+
+		-- stop and eat
+		if self.state ~= "attack" then
+			self:set_velocity(0)
+			self:set_animation("replace")
+			self.pause_timer = 1.5
 		end
 	end
 })
