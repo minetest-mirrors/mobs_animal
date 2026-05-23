@@ -156,7 +156,7 @@ core.register_craft({
 core.register_node(":mobs:honey_block", {
 	description = S("Honey Block"),
 	tiles = {"mobs_honey_block.png"},
-	groups = {snappy = 3, flammable = 2},
+	groups = {snappy = 3, flammable = 2, fall_damage_add_percent = -80},
 	is_ground_content = false,
 	sounds = mobs.node_sound_dirt_defaults()
 })
