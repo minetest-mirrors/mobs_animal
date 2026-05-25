@@ -22,6 +22,7 @@ local buckets = {
 mobs:register_mob("mobs_animal:cow", {
 	description = S("Cow"),
 	type = "animal",
+	stepheight = 0.6,
 	passive = false,
 	attack_type = "dogfight",
 	attack_npcs = false,
