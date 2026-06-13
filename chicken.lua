@@ -75,22 +75,23 @@ mobs:register_mob("mobs_animal:chicken", {
 
 	do_custom = function(self, dtime)
 
+		if self.child then return end
+
 		self.egg_timer = (self.egg_timer or 0) + dtime
 		if self.egg_timer < 10 then return end
 		self.egg_timer = 0
 
-		if self.child then return end
-
 		local pos = self.object:get_pos() ; if not pos then return end
+		local num = math.random(100)
 
-		if math.random(100) == 1 then
+		if num == 1 then
 
 			core.add_item(pos, "mobs:egg")
 
 			core.sound_play("default_place_node_hard",
 					{pos = pos, max_hear_distance = 5}, true)
 
-		elseif math.random(100) < 3 then
+		elseif num == 2 then
 			core.add_item(pos, "mobs:chicken_feather")
 		end
 	end
