@@ -82,7 +82,7 @@ mobs:register_mob("mobs_animal:chicken", {
 		self.egg_timer = 0
 
 		local pos = self.object:get_pos() ; if not pos then return end
-		local num = math.random(100)
+		local num = math.random(200)
 
 		if num == 1 then
 
