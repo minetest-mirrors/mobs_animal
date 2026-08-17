@@ -1,4 +1,41 @@
 
+local S = core.get_translator("mobs_animal")
+
+-- pig adoption
+
+local function pig_adoption(pos, player)
+
+	local name = player:get_player_name() or ""
+	local col = core.get_color_escape_sequence("#e35d86")
+
+	lucky_block:msg(player, col .. S("You've adopted a baby!"))
+
+	mobs:add_mob(pos, {
+		name = "mobs_animal:pumba", child = true, owner = name, nametag = "Baby #1",
+		ignore_count = true
+	})
+
+	core.after(3, function()
+
+		lucky_block:msg(player, col .. S("Twins!!"))
+
+		mobs:add_mob(pos, {
+			name = "mobs_animal:pumba", child = true, owner = name, nametag = "Baby #2",
+			ignore_count = true
+		})
+	end)
+
+	core.after(6, function()
+
+		lucky_block:msg(player, col .. S("Triplets!!!"))
+
+		mobs:add_mob(pos, {
+			name = "mobs_animal:pumba", child = true, owner = name, nametag = "Baby #3",
+			ignore_count = true
+		})
+	end)
+end
+
 -- add lucky blocks
 
 lucky_block:add_blocks({
@@ -21,7 +58,8 @@ lucky_block:add_blocks({
 	{"dro", {"mobs:mutton_raw", "mobs:mutton_cooked"}, 10},
 	{"dro", {"mobs:meat_raw", "mobs:meat"}, 10},
 	{"dro", {"mobs:glass_milk"}, 5},
-	{"spw", "mobs_animal:penguin", 2}
+	{"spw", "mobs_animal:penguin", 2},
+	{"cus", pig_adoption}
 })
 
 -- if nyancat found add special block
