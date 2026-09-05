@@ -25,7 +25,7 @@ mobs:register_mob("mobs_animal:penguin", {
 	jump_height = 3,
 	stepheight = 1.1,
 	drops = {
-		{name = "mobs:meat_raw", chance = 1, min = 1, max = 1}
+		{name = "mobs:chicken_raw", chance = 1, min = 1, max = 1}
 	},
 	water_damage = 0,
 	lava_damage = 4,
