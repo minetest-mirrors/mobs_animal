@@ -126,15 +126,15 @@ mobs:register_mob("mobs_animal:bunny", {
 
 if not mobs.custom_spawn_animal then
 
-	local spawn_on = "default:dirt_with_grass"
+	local spawn_on = {"default:dirt_with_grass"}
 
 	if core.get_modpath("ethereal") then
-		spawn_on = "ethereal:prairie_dirt"
+		spawn_on = {"ethereal:prairie_dirt", "ethereal:tawny_dirt"}
 	end
 
 	mobs:spawn({
 		name = "mobs_animal:bunny",
-		nodes = {spawn_on},
+		nodes = spawn_on,
 		neighbors = {"group:grass"},
 		min_light = 14,
 		interval = 60,
