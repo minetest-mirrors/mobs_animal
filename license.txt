@@ -34,9 +34,17 @@ mobs_panda_viking.png by Zlo under CC0
 
 mobs_bucket_milk.png under (CC BY-SA 3.0) by ElementW (edited)
 
-Models/Textures/Media by Krupnov Pavel (WTFPL)
+Models/Textures by Melkor (CCPL)
   mobs_rat.b3d
-  mobs_rat.png
+  mobs_rat1.png
+  mobs_rat2.png
+  mobs_rat3.png
+  mobs_rat4.png
+
+Texture by overactiongamestudio (CC0):
+  mobs_rat_inv.png
+
+Models/Textures/Media by Krupnov Pavel (WTFPL)
   mobs_sheep.b3d (converted to .b3d by sirrobzerrone)
   mobs_stone_monster.b3d
   mobs_stone_monster.png

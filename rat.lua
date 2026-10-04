@@ -1,36 +1,49 @@
 
 local S = core.get_translator("mobs_animal")
 
--- Rat by KPavel and PilzAdam (B3D model by sirrobzeroone)
+-- Rat by Melkor (model and textures)
 
 mobs:register_mob("mobs_animal:rat", {
 	description = S("Rat"),
-	stepheight = 0.6,
+	stepheight = 1.1,
 	type = "animal",
 	passive = true,
-	hp_min = 1,
-	hp_max = 4,
+	hp_min = 2,
+	hp_max = 5,
+	view_range = 5,
 	armor = 100,
-	collisionbox = {-0.2, -1, -0.2, 0.2, -0.8, 0.2},
+	collisionbox = {-0.12, 0, -0.12, 0.12, 0.1, 0.12},
 	visual = "mesh",
 	mesh = "mobs_rat.b3d",
+	rotate = 180,
 	textures = {
 		{"mobs_rat.png"},
 		{"mobs_rat2.png"},
-		{"mobs_rat3.png"}
+		{"mobs_rat3.png"},
+		{"mobs_rat4.png"}
 	},
 	makes_footstep_sound = false,
 	sounds = {random = "mobs_rat"},
-	walk_velocity = 1,
-	run_velocity = 2,
+	walk_velocity = 1.5,
+	run_velocity = 3,
 	runaway = true,
 	water_damage = 0,
 	lava_damage = 4,
+	fire_damage = 4,
 	light_damage = 0,
-	fear_height = 2,
+	fear_height = 3,
+	follow = {"group:food_cheese", "group:seed"},
+	replace_what = {
+		"group:food_cheese", "group:seed", "farming:barley_7", "farming:barley_8",
+		"farming:wheat_7", "farming:wheat_8", "farming:corn_7", "farming:corn_8"
+	},
+	replace_with = "air", replace_rate = 10,
 
 	on_rightclick = function(self, clicker)
-		mobs:capture_mob(self, clicker, 50, 90, 0, true, "mobs_animal:rat")
+
+		if mobs:feed_tame(self, clicker, 4, true, true) then return end
+		if mobs:protect(self, clicker) then return end
+		if mobs:capture_mob(self, clicker, 50, 90, 0, true) then return end
 	end,
 --[[
 	do_custom = function(self, dtime)
@@ -58,13 +71,17 @@ mobs:register_mob("mobs_animal:rat", {
 ]]
 })
 
--- example on_spawn function
+-- example on_spawn function (battle rats)
 
 local function rat_spawn(self, pos)
 	self = self:get_luaentity()
-	print (self.name, pos.x, pos.y, pos.z)
 	self.hp_max = 100
 	self.health = 100
+	self.passive = false
+	self.attack_chance = 50
+	self.attack_type = "dogfight"
+	self.damage = 2
+	self.group_attack = true
 end
 
 -- where to spawn
@@ -79,7 +96,7 @@ if not mobs.custom_spawn_animal then
 		interval = 60,
 		chance = 8000,
 		max_height = 0,
-	--	on_spawn = rat_spawn,
+--		on_spawn = rat_spawn,
 	})
 end
 
@@ -106,5 +123,13 @@ core.register_craft({
 	type = "cooking",
 	output = "mobs:rat_cooked",
 	recipe = "mobs_animal:rat",
+	cooktime = 5
+})
+
+
+core.register_craft({
+	type = "cooking",
+	output = "mobs:rat_cooked",
+	recipe = "mobs_animal:rat_set",
 	cooktime = 5
 })

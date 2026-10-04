@@ -21,7 +21,7 @@ Found on green grass these cute cats walk around and can be picked up and placed
 
 ---
 ### Rat
-Typically found around stone they can be picked up and cooked for eating.
+Typically found in stone caves, they can be tamed and picked up for pets, or cooked for eating before they eat your crops.
 
 ---
 ### Sheep
