@@ -61,6 +61,11 @@ mobs:register_mob("mobs_animal:bunny", {
 		local item = clicker:get_wielded_item()
 		local player_name = clicker:get_player_name()
 
+		if self.owner == player_name and item:get_name() == "dye:black" then
+			self.object:set_properties({textures = {"mobs_bunny_black.png"}})
+			self.base_texture = {"mobs_bunny_black.png"}
+		end
+
 		if self.owner == player_name and item:get_name() == "mobs:lava_orb" then
 
 			-- take orb
