@@ -193,23 +193,19 @@ local mobs_shoot_egg = function (item, player, pointed_thing)
 		z = playerpos.z
 	}, "mobs_animal:egg_entity")
 
-	local ent = obj:get_luaentity()
+	local ent = obj and obj:get_luaentity() ; if not ent then return end
 	local dir = player:get_look_dir()
 
 	ent.velocity = egg_VELOCITY -- needed for api internal timing
 	ent.switch = 1 -- needed so that egg doesn't despawn straight away
 	ent._is_arrow = true -- tell advanced mob protection this is an arrow
+	ent.playername = player:get_player_name() -- add player name to arrow for ownership
 
 	obj:set_velocity({
 			x = dir.x * egg_VELOCITY, y = dir.y * egg_VELOCITY, z = dir.z * egg_VELOCITY})
 
 	obj:set_acceleration({
 			x = dir.x * -3, y = -egg_GRAVITY, z = dir.z * -3})
-
-	-- pass player name to egg for chick ownership
-	local ent2 = obj:get_luaentity()
-
-	ent2.playername = player:get_player_name()
 
 	item:take_item()
 
