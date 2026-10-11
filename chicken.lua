@@ -245,7 +245,7 @@ core.register_craftitem(":mobs:chicken_egg_fried", {
 	description = S("Fried Egg"),
 	inventory_image = "mobs_chicken_egg_fried.png",
 	on_use = core.item_eat(2),
-	groups = {food_egg_fried = 1}
+	groups = {food_egg_fried = 1, food_egg = 1}
 })
 
 mobs.add_eatable("mobs:chicken_egg_fried", 2)

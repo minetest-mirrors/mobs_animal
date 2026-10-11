@@ -35,6 +35,7 @@ mobs:register_mob("mobs_animal:penguin", {
 		speed_normal = 15,
 		stand_start = 1, stand_end = 20,
 		walk_start = 25, walk_end = 45,
+		glide_start = 75, glide_end = 95,
 		fly_start = 75, fly_end = 95 -- swim animation
 		-- 50-70 is slide/water idle
 	},
