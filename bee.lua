@@ -25,7 +25,7 @@ mobs:register_mob("mobs_animal:bee", {
 	water_damage = 1,
 	lava_damage = 2,
 	light_damage = 0,
-	fall_damage = 0,
+	fall_damage = false,
 	fall_speed = -3,
 	animation = {
 		speed_normal = 15,
