@@ -4,10 +4,16 @@ local S = core.get_translator("mobs_animal")
 -- should cows eat grass blocks and mess up the environment?
 
 local eat_gb = core.settings:get_bool("mobs_animal.eat_grass_block")
-local replace_what = { {"group:grass", "air", 0} }
+local replace_what = { {{"group:grass", "group:dry_grass"}, "air", 0} }
 
 if eat_gb then
-	table.insert(replace_what, {"default:dirt_with_grass", "default:dirt", -1})
+
+	local dirt_nodes = {
+		"default:dirt_with_grass", "ethereal:bamboo_dirt", "ethereal:grove_dirt",
+		"ethereal:cold_dirt", "ethereal:prairie_dirt", "ethereal:tawny_dirt",
+		"default:dirt_with_dry_grass"}
+
+	table.insert(replace_what, {dirt_nodes, "default:dirt", -1})
 end
 
 -- Buckets to use
