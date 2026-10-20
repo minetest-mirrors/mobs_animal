@@ -139,7 +139,7 @@ for _, col in ipairs(all_colours) do
 			self.food = (self.food or 0) + 1
 
 			-- if sheep replaces 8x grass then it regrows wool
-			if self.food >= 8 then
+			if self.gotten and self.food >= 8 then
 
 				self.food = 0
 				self.gotten = false
@@ -246,9 +246,9 @@ for _, col in ipairs(all_colours) do
 				end
 
 				--if fed 7 times then sheep regrows wool
-				if self.food and self.food > 6 then
+				if self.gotten and self.food and self.food > 6 then
 
-					self.gotten = false
+					self.gotten = nil ; self.food = 0
 					self.drops = drops_normal
 
 					local textures = horn_texture_sel(self.attribute_horns, self.gotten)

@@ -108,7 +108,9 @@ mobs:register_mob("mobs_animal:cow", {
 		if mobs:feed_tame(self, clicker, 8, true, true) then
 
 			-- if fed 7x wheat or grass then cow can be milked again
-			if self.food and self.food > 6 then self.gotten = nil end
+			if self.gotten and self.food and self.food > 6 then
+				self.gotten = nil ; self.food = 0
+			end
 
 			return
 		end
@@ -144,13 +146,14 @@ mobs:register_mob("mobs_animal:cow", {
 		end
 
 		self.gotten = true -- milked
+		self.food = 0 -- reset food counter
 	end,
 
 	on_replace = function(self, pos, oldnode, newnode)
 
 		self.food = (self.food or 0) + 1
 
-		if self.food > 7 then -- replace 8x grass and can be milked again
+		if self.gotten and self.food > 7 then -- replace 8x grass and can be milked again
 			self.food = 0
 			self.gotten = nil
 		end
