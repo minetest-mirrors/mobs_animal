@@ -50,7 +50,7 @@ mobs:register_mob("mobs_animal:cow", {
 		replace = "default_dig_crumbly"
 	},
 	walk_velocity = 1,
-	run_velocity = 2,
+	run_velocity = 3,
 	jump_height = 6,
 	pushable = true,
 	drops = {
@@ -61,12 +61,22 @@ mobs:register_mob("mobs_animal:cow", {
 	lava_damage = 5,
 	light_damage = 0,
 	animation = {
-		replace_start = 0, replace_end = 30, replace_speed = 20, replace_loop = false,
+		replace_start = 0,
+		replace_end = 30,
+		replace_speed = 20,
+		replace_loop = false,
+		replace_locked = 1.5, -- lock animation until finished for 1.5 seconds
+
 		stand_start = 35, stand_end = 75, stand_speed = 20,
 		walk_start = 85, walk_end = 114, walk_speed = 20,
 		run_start = 120, run_end = 140, run_speed = 40,
 		punch_start = 145, punch_end = 160, punch_speed = 20,
-		die_start = 165, die_end = 185, die_speed = 25, die_loop = false
+
+		die_start = 165,
+		die_end = 185,
+		die_speed = 25,
+		die_loop = false,
+		die_locked = 0.8 -- lock death animation for 0.8 seconds before removing mob
 	},
 	follow = {
 		"farming:wheat", "default:grass_1", "farming:barley",
@@ -119,8 +129,7 @@ mobs:register_mob("mobs_animal:cow", {
 			return
 		end
 
-		tool:take_item()
-		clicker:set_wielded_item(tool)
+		tool:take_item() ; clicker:set_wielded_item(tool)
 
 		local inv = clicker:get_inventory()
 
@@ -146,8 +155,7 @@ mobs:register_mob("mobs_animal:cow", {
 			self.gotten = nil
 		end
 
-		-- stop and eat
-		if self.state ~= "attack" then
+		if self.state ~= "attack" then -- stop and eat
 			self:set_velocity(0)
 			self:set_animation("replace")
 			self.pause_timer = 1.5
