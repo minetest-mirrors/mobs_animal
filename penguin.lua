@@ -5,7 +5,6 @@ local S = core.get_translator("mobs_animal")
 
 mobs:register_mob("mobs_animal:penguin", {
 	description = S("Penguin"),
-	stepheight = 0.6,
 	type = "animal",
 	passive = true,
 	reach = 1,
@@ -69,11 +68,11 @@ mobs:register_mob("mobs_animal:penguin", {
 		-- when sliding into water switch to fly mode and speed up swimming
 		if not self.fly and (in_water or on_water) then
 			self.fly = true ; self.walk_velocity = 2
-			self.floats = true
+			self.object:set_acceleration({x = 0, y = 0, z = 0})
 		end
 
 		-- when in water and breaking surface try to leap
-		if self.fly and not un_water and math.random(4) == 1 then
+		if self.fly and not un_water and math.random(7) == 1 then
 
 			local vel = self.object:get_velocity() or {x = 0, y = 0, z = 0}
 			local yaw = self.object:get_yaw() or 0
@@ -89,7 +88,6 @@ mobs:register_mob("mobs_animal:penguin", {
 		-- when coming out of water switch fly off and go back to normal walk speed
 		if self.fly and not in_water and not on_water then
 			self.fly = nil ; self.walk_velocity = 1
-			self.floats = nil
 		end
 	end
 })
