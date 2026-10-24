@@ -4,39 +4,51 @@ local S = core.get_translator("mobs_animal")
 -- Bunny by ExeterDad
 
 mobs:register_mob("mobs_animal:bunny", {
+
+	-- basic settings
 	description = S("Bunny"),
+	stepheight = 0.6,
 	type = "animal",
 	passive = true,
 	reach = 1,
-	stepheight = 0.6,
 	hp_min = 1,
 	hp_max = 4,
 	armor = 100,
+
+	-- model and textyres
 	collisionbox = {-0.268, -0.5, -0.268, 0.268, 0.167, 0.268},
 	visual = "mesh",
 	mesh = "mobs_bunny.b3d",
-	drawtype = "front",
 	textures = {
 		{"mobs_bunny_grey.png"},
 		{"mobs_bunny_brown.png"},
 		{"mobs_bunny_white.png"}
 	},
-	sounds = {},
+
+	-- sounds
 	makes_footstep_sound = false,
+	sounds = {},
+
+	-- movement
 	walk_velocity = 1,
-	run_velocity = 2,
+	run_velocity = 3,
 	runaway = true,
 	runaway_from = {"mobs_animal:pumba", "player"},
-	jump = true,
 	jump_height = 6,
+
+	-- item drops
 	drops = {
 		{name = "mobs:rabbit_raw", chance = 1, min = 1, max = 1},
 		{name = "mobs:rabbit_hide", chance = 1, min = 0, max = 1}
 	},
-	water_damage = 0.01,
+
+	-- damage
+	water_damage = 0.01, -- low setting has mob avoid water rather than damage
 	lava_damage = 4,
 	light_damage = 0,
 	fear_height = 2,
+
+	-- animations
 	animation = {
 		speed_normal = 15,
 		stand_start = 1, stand_end = 15,
@@ -44,12 +56,17 @@ mobs:register_mob("mobs_animal:bunny", {
 		run_start = 16, run_end = 24, run_speed = 40,
 		punch_start = 16, punch_end = 24
 	},
+
+	-- items to follow/eat from player
 	follow = {"farming:carrot", "farming_plus:carrot_item", "default:grass_1"},
 	view_range = 8,
+
+	-- detection and eating
 	replace_rate = 10,
 	replace_what = {"farming:carrot_7", "farming:carrot_8", "farming_plus:carrot"},
 	replace_with = "air",
 
+	-- player interaction
 	on_rightclick = function(self, clicker)
 
 		-- feed or tame
@@ -100,6 +117,7 @@ mobs:register_mob("mobs_animal:bunny", {
 		end
 	end,
 
+	-- when mob spawned check nodes nearby and set texture
 	on_spawn = function(self)
 
 		local pos = self.object:get_pos() ; pos.y = pos.y - 1
@@ -107,18 +125,21 @@ mobs:register_mob("mobs_animal:bunny", {
 		-- white snowy bunny
 		if core.find_node_near(pos, 1,
 				{"default:snow", "default:snowblock", "default:dirt_with_snow"}) then
+
 			self.base_texture = {"mobs_bunny_white.png"}
 			self.object:set_properties({textures = self.base_texture})
 
 		-- brown desert bunny
 		elseif core.find_node_near(pos, 1,
 				{"default:desert_sand", "default:desert_stone"}) then
+
 			self.base_texture = {"mobs_bunny_brown.png"}
 			self.object:set_properties({textures = self.base_texture})
 
 		-- grey stone bunny
 		elseif core.find_node_near(pos, 1,
 				{"default:stone", "default:gravel"}) then
+
 			self.base_texture = {"mobs_bunny_grey.png"}
 			self.object:set_properties({textures = self.base_texture})
 		end
@@ -140,7 +161,7 @@ if not mobs.custom_spawn_animal then
 	mobs:spawn({
 		name = "mobs_animal:bunny",
 		nodes = spawn_on,
-		neighbors = {"group:grass"},
+		neighbors = {"group:flora"},
 		min_light = 14,
 		interval = 60,
 		chance = 8000,

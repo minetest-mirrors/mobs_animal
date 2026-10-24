@@ -16,20 +16,25 @@ local kitten_types = {
 -- Kitten by Jordach / BFD
 
 mobs:register_mob("mobs_animal:kitten", {
+
+	-- basic settings
 	description = S("Kitten"),
-	stepheight = 0.6,
+	stepheight = 1.1,
 	type = "animal",
+	passive = false,
+	hp_min = 5,
+	hp_max = 10,
+	armor = 100,
+	reach = 1,
+
+	-- attacks
 	specific_attack = {"mobs_animal:rat"},
 	damage = 1,
 	attack_type = "dogfight",
 	attack_animals = true, -- so it can attack rat
 	attack_players = false,
-	reach = 1,
-	stepheight = 1.1,
-	passive = false,
-	hp_min = 5,
-	hp_max = 10,
-	armor = 100,
+
+	-- model and textures
 	collisionbox = {-0.3, -0.3, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
 	visual_size = {x = 0.5, y = 0.5},
@@ -40,18 +45,28 @@ mobs:register_mob("mobs_animal:kitten", {
 		{"mobs_kitten_ginger.png"},
 		{"mobs_kitten_sandy.png"}
 	},
+
+	-- sounds
 	makes_footstep_sound = false,
 	sounds = {random = "mobs_kitten"},
+
+	-- movement
 	walk_velocity = 0.6,
 	walk_chance = 15,
 	run_velocity = 2,
 	runaway = true,
+
+	-- item drops
 	drops = {
 		{name = "farming:string", chance = 1, min = 0, max = 1}
 	},
+
+	-- damage
 	water_damage = 0.01,
 	lava_damage = 5,
 	fear_height = 3,
+
+	-- animations
 	animation = {
 		speed_normal = 42,
 		stand_start = 97, stand_end = 192,
@@ -59,34 +74,15 @@ mobs:register_mob("mobs_animal:kitten", {
 		run_start = 0, run_end = 96, run_speed = 50,
 		stoodup_start = 0, stoodup_end = 0,
 	},
+
+	-- items to follow/eat from player
 	follow = {
 		"mobs_animal:rat", "group:food_fish_raw", "mobs:glass_milk",
 		"mobs_fish:tropical", "mobs_fish:clownfish", "xocean:fish_edible"
 	},
 	view_range = 8,
 
-	-- check surrounding nodes and spawn a specific kitten
-	on_spawn = function(self)
-
-		local pos = self.object:get_pos() ; pos.y = pos.y - 1
-		local tmp
-
-		for n = 1, #kitten_types do
-
-			tmp = kitten_types[n]
-
-			if core.find_node_near(pos, 1, tmp.nodes) then
-
-				self.base_texture = tmp.skins
-				self.object:set_properties({textures = tmp.skins})
-
-				return true
-			end
-		end
-
-		return true -- run only once, false/nil runs every activation
-	end,
-
+	-- player interaction
 	on_rightclick = function(self, clicker)
 
 		-- what are we holding?
@@ -125,13 +121,36 @@ mobs:register_mob("mobs_animal:kitten", {
 		end
 	end,
 
+	-- check surrounding nodes on spawn for a specific kitten texture
+	on_spawn = function(self)
+
+		local pos = self.object:get_pos() ; pos.y = pos.y - 1
+		local tmp
+
+		for n = 1, #kitten_types do
+
+			tmp = kitten_types[n]
+
+			if core.find_node_near(pos, 1, tmp.nodes) then
+
+				self.base_texture = tmp.skins
+				self.object:set_properties({textures = tmp.skins})
+
+				return true
+			end
+		end
+
+		return true -- run only once, false/nil runs every activation
+	end,
+
+	-- cough up a hairball on occasion
 	do_custom = function(self, dtime)
 
 		if not hairball then return end
 
-		self.hairball_timer = (self.hairball_timer or 0) + dtime
-		if self.hairball_timer < 10 then return end
-		self.hairball_timer = 0
+		self.temp.hairball_timer = (self.temp.hairball_timer or 0) + dtime
+		if self.temp.hairball_timer < 10 then return end
+		self.temp.hairball_timer = 0
 
 		if self.child or math.random(250) > 1 then return end
 
@@ -139,7 +158,7 @@ mobs:register_mob("mobs_animal:kitten", {
 
 		core.add_item(pos, "mobs:hairball")
 
-		core.sound_play("default_dig_snappy", {pos = pos, max_hear_distance = 5}, true)
+		core.sound_play("default_dig_snappy", {pos = pos, max_hear_distance = 8}, true)
 	end
 })
 
@@ -156,7 +175,7 @@ if not mobs.custom_spawn_animal then
 	mobs:spawn({
 		name = "mobs_animal:kitten",
 		nodes = spawn_on,
-		neighbors = {"group:grass"},
+		neighbors = {"group:flora"},
 		min_light = 14,
 		interval = 60,
 		chance = 10000,
@@ -174,7 +193,7 @@ mobs:register_egg("mobs_animal:kitten", S("Kitten"), "mobs_kitten_inv.png", 0)
 
 mobs:alias_mob("mobs:kitten", "mobs_animal:kitten")
 
--- hairball and items
+-- items found inside hairball
 
 local hairball_items = {
 	"default:stick", "default:coal_lump", "default:dry_shrub", "flowers:rose",
@@ -186,6 +205,8 @@ local hairball_items = {
 	"dye:black", "dye:brown", "default:obsidian_shard", "default:tin_lump",
 	"ethereal:fish_tetra"
 }
+
+-- hairball item
 
 core.register_craftitem(":mobs:hairball", {
 	description = S("Hairball"),

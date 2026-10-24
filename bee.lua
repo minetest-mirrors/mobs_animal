@@ -4,42 +4,63 @@ local S = core.get_translator("mobs_animal")
 -- Bee by KrupnoPavel (.b3d model by sirrobzeroone)
 
 mobs:register_mob("mobs_animal:bee", {
+
+	-- basic settings
 	description = S("Bee"),
 	type = "animal",
 	passive = true,
 	hp_min = 1,
 	hp_max = 2,
 	armor = 100,
+
+	-- model and textures
 	collisionbox = {-0.2, 0.2, -0.2, 0.2, 0.5, 0.2},
 	visual = "mesh",
 	mesh = "mobs_bee.b3d",
-	textures = { {"mobs_bee.png"} },
+	textures = {
+		{"mobs_bee.png"}
+	},
 	blood_texture = "mobs_bee_inv.png",
 	blood_amount = 1,
+
+	-- sounds
 	makes_footstep_sound = false,
-	sounds = { random = "mobs_bee" },
+	sounds = {
+		random = "mobs_bee"
+	},
+
+	-- movement
 	walk_velocity = 1,
+
+	-- item drops
 	drops = {
 		{name = "mobs:honey", chance = 2, min = 1, max = 2}
 	},
+
+	-- damage
 	water_damage = 1,
 	lava_damage = 2,
 	light_damage = 0,
 	fall_damage = false,
 	fall_speed = -3,
+
+	-- animations
 	animation = {
 		speed_normal = 15,
 		stand_start = 0, stand_end = 30,
 		walk_start = 35, walk_end = 65
 	},
 
+	-- player interaction
 	on_rightclick = function(self, clicker)
 		mobs:capture_mob(self, clicker, 50, 90, 0, true, "mobs_animal:bee")
 	end,
 
---	after_activate = function(self, staticdata, def, dtime)
---		print ("------", self.name, dtime, self.health)
---	end,
+	--[[ test function when bee spawns in world
+	after_activate = function(self, staticdata, def, dtime)
+		print ("------", self.name, dtime, self.health)
+	end,
+	]]--
 })
 
 -- where to spawn

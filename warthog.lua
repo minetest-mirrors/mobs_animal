@@ -4,41 +4,58 @@ local S = core.get_translator("mobs_animal")
 -- Warthog originally by KrupnoPavel, B3D model by sirrobzeroone
 
 mobs:register_mob("mobs_animal:pumba", {
+
+	-- basic settings
 	description = S("Warthog"),
 	stepheight = 0.6,
 	type = "animal",
 	passive = false,
+	hp_min = 10,
+	hp_max = 15,
+	armor = 100,
+	reach = 2,
+
+	-- attacks
 	attack_type = "dogfight",
 	group_attack = true,
 	owner_loyal = true,
 	attack_npcs = false,
-	reach = 2,
-	damage = 2, attack_chance = 95,
-	hp_min = 10,
-	hp_max = 15,
-	armor = 100,
+	damage = 2,
+	attack_chance = 95,
+
+	-- model and textures
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 0.95, 0.4},
 	visual = "mesh",
 	mesh = "mobs_pumba.b3d",
-	textures = {{"mobs_pumba.png"}},
+	textures = {
+		{"mobs_pumba.png"}
+	},
+
+	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_pig",
 		attack = "mobs_pig_angry"
 	},
+
+	-- movement
 	walk_velocity = 2,
 	run_velocity = 3,
 	jump_height = 6,
 	pushable = true,
-	follow = {"default:apple", "farming:potato"},
-	view_range = 10,
+
+	-- item drops
 	drops = {
 		{name = "mobs:pork_raw", chance = 1, min = 1, max = 3}
 	},
+
+	-- damage
 	water_damage = 0.01,
 	lava_damage = 5,
 	light_damage = 0,
 	fear_height = 2,
+
+	-- animations
 	animation = {
 		speed_normal = 15,
 		stand_start = 25, stand_end = 55,
@@ -50,6 +67,11 @@ mobs:register_mob("mobs_animal:pumba", {
 		die_loop = false, die_rotate = true
 	},
 
+	-- items to follow/eat from player
+	follow = {"default:apple", "farming:potato"},
+	view_range = 10,
+
+	-- player interaction
 	on_rightclick = function(self, clicker)
 
 		if mobs:feed_tame(self, clicker, 8, true, true) then return end
@@ -63,17 +85,15 @@ mobs:register_mob("mobs_animal:pumba", {
 if not mobs.custom_spawn_animal then
 
 	local spawn_on = {"default:dirt_with_grass", "default:dry_dirt_with_dry_grass"}
-	local spawn_by = {"group:grass"}
 
 	if core.get_modpath("ethereal") then
 		spawn_on = {"ethereal:mushroom_dirt"}
-		spawn_by = {"flowers:mushroom_brown", "flowers:mushroom_red"}
 	end
 
 	mobs:spawn({
 		name = "mobs_animal:pumba",
 		nodes = spawn_on,
-		neighbors = spawn_by,
+		neighbors = {"group:flora"},
 		min_light = 14,
 		interval = 60,
 		chance = 8000,

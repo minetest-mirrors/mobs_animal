@@ -16,7 +16,7 @@ if eat_gb then
 	table.insert(replace_what, {dirt_nodes, "default:dirt", -1})
 end
 
--- Buckets to use
+-- Buckets we can use
 
 local buckets = {
 	["bucket:bucket_empty"] = "mobs:bucket_milk",
@@ -26,17 +26,24 @@ local buckets = {
 -- Cow by sirrobzeroone
 
 mobs:register_mob("mobs_animal:cow", {
+
+	-- basic settings
 	description = S("Cow"),
-	type = "animal",
 	stepheight = 0.6,
+	type = "animal",
 	passive = false,
-	attack_type = "dogfight",
-	attack_npcs = false,
-	reach = 2,
-	damage = 4, attack_chance = 98,
 	hp_min = 10,
 	hp_max = 20,
 	armor = 100,
+	reach = 2,
+
+	-- attacks
+	attack_type = "dogfight",
+	attack_npcs = false,
+	damage = 4,
+	attack_chance = 98,
+
+	-- model and textures
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.2, 0.4},
 	visual = "mesh",
 	mesh = "mobs_cow.b3d",
@@ -44,22 +51,33 @@ mobs:register_mob("mobs_animal:cow", {
 		{"mobs_cow.png"},
 		{"mobs_cow2.png"}
 	},
+
+	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_cow",
 		replace = "default_dig_crumbly"
 	},
+
+	-- movement
 	walk_velocity = 1,
 	run_velocity = 3,
 	jump_height = 6,
 	pushable = true,
+
+	-- item drops
 	drops = {
 		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
 		{name = "mobs:leather", chance = 1, min = 0, max = 2}
 	},
+
+	-- damage
 	water_damage = 0.01,
 	lava_damage = 5,
 	light_damage = 0,
+	fear_height = 2,
+
+	-- animations
 	animation = {
 		replace_start = 0,
 		replace_end = 30,
@@ -78,15 +96,38 @@ mobs:register_mob("mobs_animal:cow", {
 		die_loop = false,
 		die_locked = 0.8 -- lock death animation for 0.8 seconds before removing mob
 	},
+
+	-- nodes to stay nearby
+	stay_near = {{"farming:straw"}, 10},
+
+	-- items to follow/eat from player
 	follow = {
 		"farming:wheat", "default:grass_1", "farming:barley",
 		"farming:oat", "farming:rye"
 	},
 	view_range = 8,
+
+	-- detection and eating (defined above) with custom function
 	replace_rate = 10,
 	replace_what = replace_what,
 
---[[
+	on_replace = function(self, pos, oldnode, newnode)
+
+		self.food = (self.food or 0) + 1
+
+		if self.gotten and self.food > 7 then -- replace 8x grass and can be milked again
+			self.food = 0
+			self.gotten = nil
+		end
+
+		if self.state ~= "attack" then -- stop and eat when calm
+			self:set_velocity(0)
+			self:set_animation("replace")
+			self.pause_timer = 1.5
+		end
+	end,
+
+	--[[ test function to allow cow to pickup dropped items
 	pick_up = {"default:grass_1", "default:dry_grass_1"},
 	on_pick_up = function(self, entity)
 
@@ -98,10 +139,9 @@ mobs:register_mob("mobs_animal:cow", {
 
 		return istack
 	end,
-]]
---	stay_near = {{"farming:straw", "group:grass"}, 10},
-	fear_height = 2,
+	]] --
 
+	-- player interaction
 	on_rightclick = function(self, clicker)
 
 		-- feed or tame
@@ -148,22 +188,6 @@ mobs:register_mob("mobs_animal:cow", {
 		self.gotten = true -- milked
 		self.food = 0 -- reset food counter
 	end,
-
-	on_replace = function(self, pos, oldnode, newnode)
-
-		self.food = (self.food or 0) + 1
-
-		if self.gotten and self.food > 7 then -- replace 8x grass and can be milked again
-			self.food = 0
-			self.gotten = nil
-		end
-
-		if self.state ~= "attack" then -- stop and eat
-			self:set_velocity(0)
-			self:set_animation("replace")
-			self.pause_timer = 1.5
-		end
-	end
 })
 
 -- where to spawn
@@ -172,8 +196,8 @@ if not mobs.custom_spawn_animal then
 
 	mobs:spawn({
 		name = "mobs_animal:cow",
-		nodes = {"default:dirt_with_grass", "ethereal:green_dirt"},
-		neighbors = {"group:grass"},
+		nodes = {"default:dirt_with_grass"},
+		neighbors = {"group:flora"},
 		min_light = 14,
 		interval = 60,
 		chance = 8000,

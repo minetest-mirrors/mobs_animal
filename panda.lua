@@ -4,41 +4,58 @@ local S = core.get_translator("mobs_animal")
 -- Panda by AspireMint (CC BY-SA 3.0)
 
 mobs:register_mob("mobs_animal:panda", {
+
+	-- basic settings
 	description = S("Panda"),
 	stepheight = 0.6,
 	type = "animal",
 	passive = false,
+	hp_min = 10,
+	hp_max = 24,
+	armor = 100,
+	reach = 2,
+
+	-- attacks
 	attack_type = "dogfight",
 	group_attack = false,
 	owner_loyal = true,
 	attack_npcs = false,
-	reach = 2,
-	damage = 3, attack_chance = 90,
-	hp_min = 10,
-	hp_max = 24,
-	armor = 100,
+	damage = 3,
+	attack_chance = 90,
+
+	-- model and textures
 	collisionbox = {-0.4, -0.45, -0.4, 0.4, 0.45, 0.4},
 	visual = "mesh",
 	mesh = "mobs_panda.b3d",
-	textures = {{"mobs_panda.png"}},
+	textures = {
+		{"mobs_panda.png"}
+	},
+
+	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_panda",
 		attack = "mobs_panda"
 	},
+
+	-- movement
 	walk_chance = 5,
 	walk_velocity = 0.5,
-	run_velocity = 1.5,
+	run_velocity = 2,
 	jump_height = 3,
-	follow = {"ethereal:bamboo", "bamboo:trunk", "group:bamboo"},
-	view_range = 8,
+
+	-- item drops
 	drops = {
 		{name = "mobs:meat_raw", chance = 1, min = 1, max = 2}
 	},
+
+	-- damage
 	water_damage = 0.01,
 	lava_damage = 5,
 	light_damage = 0,
 	fear_height = 6,
+
+	-- animations
 	animation = {
 		speed_normal = 15,
 		stand_start = 130, stand_end = 270,
@@ -50,6 +67,11 @@ mobs:register_mob("mobs_animal:panda", {
 		punch_start = 80, punch_end = 120
 	},
 
+	-- items to follow/eat from player
+	follow = {"ethereal:bamboo", "bamboo:trunk", "group:bamboo"},
+	view_range = 8,
+
+	-- player interaction
 	on_rightclick = function(self, clicker)
 
 		if mobs:feed_tame(self, clicker, 20, true, true) then return end

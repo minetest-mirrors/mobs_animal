@@ -4,6 +4,8 @@ local S = core.get_translator("mobs_animal")
 -- Chicken by JK Murray and Sirrobzeroone
 
 mobs:register_mob("mobs_animal:chicken", {
+
+	-- basic settings
 	description = S("Chicken"),
 	stepheight = 0.6,
 	type = "animal",
@@ -11,6 +13,8 @@ mobs:register_mob("mobs_animal:chicken", {
 	hp_min = 5,
 	hp_max = 10,
 	armor = 100,
+
+	-- model and textures
 	collisionbox = {-0.3, -0.75, -0.3, 0.3, 0.1, 0.3},
 	visual = "mesh",
 	mesh = "mobs_chicken.b3d",
@@ -20,25 +24,35 @@ mobs:register_mob("mobs_animal:chicken", {
 		{"mobs_chicken_black.png"}
 	},
 	child_texture = {{"mobs_chick.png"}},
+
+	-- sounds
 	makes_footstep_sound = true,
 	sounds = {
 		random = "mobs_chicken",
 		replace = "default_dig_crumbly"
 	},
+
+	-- movement
 	walk_velocity = 1,
 	run_velocity = 3,
 	runaway = true,
 	runaway_from = {"player", "mobs_animal:pumba"},
+
+	-- item drops
 	drops = {
 		{name = "mobs:chicken_raw", chance = 1, min = 1, max = 1},
 		{name = "mobs:chicken_feather", chance = 1, min = 0, max = 2}
 	},
+
+	-- damage
 	water_damage = 1,
 	lava_damage = 5,
 	light_damage = 0,
 	fall_damage = false,
 	fall_speed = -6,
 	fear_height = 5,
+
+	-- animations
 	animation = {
 		speed_normal = 15,
 		stand_start = 1, stand_end = 30, stand_speed = 28,
@@ -46,12 +60,16 @@ mobs:register_mob("mobs_animal:chicken", {
 		walk_start = 71, walk_end = 90, walk_speed = 24,
 		run_start = 91, run_end = 110, run_speed = 34
 	},
+
+	-- items to follow/eat from player
 	follow = {
 		"farming:seed_wheat", "farming:seed_cotton", "farming:seed_barley",
 		"farming:seed_oat", "farming:seed_rye", "farming:seed_rice",
 		"farming:seed_hemp", "farming:seed_sunflower", "farming:seed_mint"
 	},
 	view_range = 5,
+
+	-- detection and eating
 	replace_rate = 5,
 	replace_what = {
 		{"farming:seed_wheat", "air", 0},
@@ -66,6 +84,7 @@ mobs:register_mob("mobs_animal:chicken", {
 	},
 	stay_near = {{"group:seed"}, 7},
 
+	-- player interaction
 	on_rightclick = function(self, clicker)
 
 		if mobs:feed_tame(self, clicker, 8, true, true) then return end
@@ -73,6 +92,7 @@ mobs:register_mob("mobs_animal:chicken", {
 		if mobs:capture_mob(self, clicker, 30, 50, 80, false, nil) then return end
 	end,
 
+	-- egg and feather drops
 	do_custom = function(self, dtime)
 
 		if self.child then return end
@@ -110,7 +130,7 @@ if not mobs.custom_spawn_animal then
 	mobs:spawn({
 		name = "mobs_animal:chicken",
 		nodes = spawn_on,
-		neighbors = {"group:grass"},
+		neighbors = {"group:flora"},
 		min_light = 14,
 		interval = 60,
 		chance = 8000,
